@@ -103,7 +103,7 @@ const { project } = Astro.props;
                       <img 
                         src={screenshot} 
                         alt={`${project.name} screenshot ${index + 1}`}
-                        class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                        class="w-full h-[322px] object-cover group-hover:scale-105 transition-transform duration-300"
                         loading="eager"
                       />
                     </div>
@@ -214,7 +214,7 @@ const { project } = Astro.props;
         </button>
         
         <!-- Image Container -->
-        <div class="max-w-[90vw] max-h-[90vh] flex items-center justify-center">
+        <div class="w-[90vw] h-[90vh] flex items-center justify-center">
           <img 
             id="galleryImage" 
             src="" 
@@ -273,6 +273,105 @@ const { project } = Astro.props;
         currentIndexSpan.textContent = currentImageIndex + 1;
       }
       
+      // Color extraction and gradient generation
+      function extractColorsFromImage(img) {
+        return new Promise((resolve) => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          
+          // Set canvas size to a smaller size for faster processing
+          canvas.width = 50;
+          canvas.height = 50;
+          
+          img.onload = function() {
+            ctx.drawImage(img, 0, 0, 50, 50);
+            const imageData = ctx.getImageData(0, 0, 50, 50);
+            const data = imageData.data;
+            
+            // Sample colors from different areas of the image
+            const colors = [];
+            const step = 4; // Sample every 4th pixel
+            
+            for (let i = 0; i < data.length; i += step * 4) {
+              const r = data[i];
+              const g = data[i + 1];
+              const b = data[i + 2];
+              const a = data[i + 3];
+              
+              // Skip transparent pixels
+              if (a > 128) {
+                colors.push({ r, g, b });
+              }
+            }
+            
+            // Find dominant colors using a simple clustering approach
+            const dominantColors = findDominantColors(colors, 3);
+            resolve(dominantColors);
+          };
+          
+          // If image is already loaded
+          if (img.complete) {
+            img.onload();
+          }
+        });
+      }
+      
+      function findDominantColors(colors, count) {
+        if (colors.length === 0) return ['#f3f4f6', '#e5e7eb', '#d1d5db'];
+        
+        // Simple k-means clustering
+        const clusters = [];
+        const clusterCount = Math.min(count, colors.length);
+        
+        // Initialize clusters with random colors
+        for (let i = 0; i < clusterCount; i++) {
+          const randomColor = colors[Math.floor(Math.random() * colors.length)];
+          clusters.push({
+            r: randomColor.r,
+            g: randomColor.g,
+            b: randomColor.b,
+            count: 0
+          });
+        }
+        
+        // Assign colors to nearest cluster
+        colors.forEach(color => {
+          let minDistance = Infinity;
+          let nearestCluster = 0;
+          
+          clusters.forEach((cluster, index) => {
+            const distance = Math.sqrt(
+              Math.pow(color.r - cluster.r, 2) +
+              Math.pow(color.g - cluster.g, 2) +
+              Math.pow(color.b - cluster.b, 2)
+            );
+            
+            if (distance < minDistance) {
+              minDistance = distance;
+              nearestCluster = index;
+            }
+          });
+          
+          clusters[nearestCluster].count++;
+        });
+        
+        // Sort by count and return top colors
+        return clusters
+          .sort((a, b) => b.count - a.count)
+          .slice(0, count)
+          .map(cluster => `rgb(${Math.round(cluster.r)}, ${Math.round(cluster.g)}, ${Math.round(cluster.b)})`);
+      }
+      
+      function createGradientBackground(colors) {
+        if (colors.length === 1) {
+          return `linear-gradient(135deg, ${colors[0]}, ${colors[0]})`;
+        } else if (colors.length === 2) {
+          return `linear-gradient(135deg, ${colors[0]}, ${colors[1]})`;
+        } else {
+          return `linear-gradient(135deg, ${colors[0]}, ${colors[1]}, ${colors[2]})`;
+        }
+      }
+      
       // Event listeners
       document.addEventListener('DOMContentLoaded', function() {
         const modal = document.getElementById('galleryModal');
@@ -282,16 +381,31 @@ const { project } = Astro.props;
         
         // Add click listeners to gallery items
         const galleryItems = document.querySelectorAll('.gallery-item');
-        galleryItems.forEach(item => {
+        galleryItems.forEach(async (item) => {
+          // Add click listener
           item.addEventListener('click', function() {
             const index = parseInt(this.getAttribute('data-index'));
             openGallery(index);
           });
+          
+          // Extract dominant color and apply as background
+          const img = item.querySelector('img');
+          if (img) {
+            try {
+              const colors = await extractColorsFromImage(img);
+              // Use the first (most dominant) color as solid background
+              item.style.background = colors[0];
+            } catch (error) {
+              console.log('Could not extract colors for image:', img.src);
+              // Fallback to a subtle gray
+              item.style.background = '#f3f4f6';
+            }
+          }
         });
         
         closeBtn.addEventListener('click', closeGallery);
-        prevBtn.addEventListener('click', showNextImage);
-        nextBtn.addEventListener('click', showPrevImage);
+        prevBtn.addEventListener('click', showPrevImage);
+        nextBtn.addEventListener('click', showNextImage);
         
         // Close modal when clicking outside the image
         modal.addEventListener('click', function(e) {

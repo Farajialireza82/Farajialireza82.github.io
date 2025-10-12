@@ -74,7 +74,7 @@ export const siteConfig = {
         "/images/boxtimer/1.png",
         "/images/boxtimer/2.png",
         "/images/boxtimer/3.png",
-        "/images/boxtimer/4.png"
+        "/images/boxtimer/4.jpg"
       ],
       githubReadme: "https://raw.githubusercontent.com/Farajialireza82/BoxTimerPro/main/README.md",
       technologies: ["Kotlin Multiplatform", "Jetpack Compose", "SwiftUI", "SQLite", "Ktor"],
