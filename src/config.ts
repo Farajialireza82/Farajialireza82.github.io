@@ -26,34 +26,6 @@ export const siteConfig = {
   ],
   projects: [
     {
-      name: "Travelo",
-      description:
-        "A modern travel guide app showcasing Clean Architecture at its finest. Built with Jetpack Compose and offline-first architecture, featuring comprehensive testing (unit, UI, and integration tests), real-time TripAdvisor and OpenWeatherMap API integration, and GPS-powered location discovery. Because learning and building beautiful apps should go hand in hand.",
-      link: "https://github.com/Farajialireza82/VacationApp",
-      skills: ["Kotlin", "Jetpack Compose", "MVVM", "Hilt", "Room", "Retrofit", "Testing"],
-      slug: "travelo",
-      detailedDescription: "Travelo is a comprehensive travel companion app that helps users discover and plan their trips with real-time data and offline capabilities. The app features a modern, intuitive interface built with Jetpack Compose and follows Clean Architecture principles for maintainability and testability.",
-      features: [
-        "Real-time weather integration with OpenWeatherMap API",
-        "TripAdvisor API integration for local attractions and reviews",
-        "GPS-powered location discovery and mapping",
-        "Offline-first architecture with Room database",
-        "Comprehensive testing suite (Unit, UI, Integration)",
-        "Material Design 3 components and theming",
-        "MVVM architecture with Hilt dependency injection"
-      ],
-      screenshots: [
-        "/images/travelo/1.jpg",
-        "/images/travelo/2.jpg",
-        "/images/travelo/3.jpg",
-        "/images/travelo/4.jpg"
-      ],
-      githubReadme: "https://raw.githubusercontent.com/Farajialireza82/VacationApp/main/README.md",
-      technologies: ["Kotlin", "Jetpack Compose", "MVVM", "Hilt", "Room", "Retrofit", "JUnit", "MockK", "Espresso"],
-      status: "Completed",
-      duration: "3 months"
-    },
-    {
       name: "BoxTimer Pro",
       description:
         "A cross-platform interval timer built with Kotlin Multiplatform for fighters and fitness enthusiasts. Features stunning Material 3 themes, glove-friendly UI design, customizable audio cues, and smart landscape mode for gym setups. Runs natively on Android and iOS from a single codebase—because your workout timer shouldn't be platform-locked.",
@@ -82,33 +54,33 @@ export const siteConfig = {
       duration: "2 months"
     },
     {
-      name: "Flex ERP/CRM",
+      name: "Travelo",
       description:
-        "Enterprise Android application serving 500+ daily users at Novaday Co. Led complete UI/UX redesign, implemented real-time maps, secure push notifications, in-app chat with media messaging, and Kanban-style workflows. Sole Android developer for over a year, later mentoring and onboarding new team members. Built with MVP architecture and a focus on performance, scalability, and thorough testing.",
-      link: "",
-      skills: ["Kotlin", "MVP", "RxJava", "Retrofit", "Dagger", "Firebase", "Enterprise"],
-      slug: "flex-erp-crm",
-      detailedDescription: "Flex ERP/CRM is a comprehensive enterprise solution that streamlines business operations for Novaday Co. As the sole Android developer, I led the complete modernization of this mission-critical application serving 500+ daily users across multiple departments.",
+        "A modern travel guide app showcasing Clean Architecture at its finest. Built with Jetpack Compose and offline-first architecture, featuring comprehensive testing (unit, UI, and integration tests), real-time TripAdvisor and OpenWeatherMap API integration, and GPS-powered location discovery. Because learning and building beautiful apps should go hand in hand.",
+      link: "https://github.com/Farajialireza82/VacationApp",
+      skills: ["Kotlin", "Jetpack Compose", "MVVM", "Hilt", "Room", "Retrofit", "Testing"],
+      slug: "travelo",
+      detailedDescription: "Travelo is a comprehensive travel companion app that helps users discover and plan their trips with real-time data and offline capabilities. The app features a modern, intuitive interface built with Jetpack Compose and follows Clean Architecture principles for maintainability and testability.",
       features: [
-        "Real-time maps and geolocation services",
-        "Firebase push notifications system",
-        "In-app chat with media messaging",
-        "Barcode scanning for inventory management",
-        "Kanban-style workflow interfaces",
-        "Enterprise-grade security and authentication",
-        "Offline data synchronization"
+        "Real-time weather integration with OpenWeatherMap API",
+        "TripAdvisor API integration for local attractions and reviews",
+        "GPS-powered location discovery and mapping",
+        "Offline-first architecture with Room database",
+        "Comprehensive testing suite (Unit, UI, Integration)",
+        "Material Design 3 components and theming",
+        "MVVM architecture with Hilt dependency injection"
       ],
       screenshots: [
-        "/images/flex/dashboard.png",
-        "/images/flex/maps.png",
-        "/images/flex/chat.png",
-        "/images/flex/kanban.png"
+        "/images/travelo/1.png",
+        "/images/travelo/2.png",
+        "/images/travelo/3.png",
+        "/images/travelo/4.jpg"
       ],
-      githubReadme: "",
-      technologies: ["Kotlin", "MVP", "RxJava", "Retrofit", "Dagger", "Firebase", "Google Maps", "Room"],
-      status: "Production",
-      duration: "1+ years"
-    },
+      githubReadme: "https://raw.githubusercontent.com/Farajialireza82/VacationApp/main/README.md",
+      technologies: ["Kotlin", "Jetpack Compose", "MVVM", "Hilt", "Room", "Retrofit", "JUnit", "MockK", "Espresso"],
+      status: "Completed",
+      duration: "3 months"
+    }
   ],
   experience: [
     {
@@ -117,31 +89,36 @@ export const siteConfig = {
       dateRange: "Feb 2024 - May 2025",
       slug: "novaday-android-developer",
       bullets: [
-        "Took full ownership of Flex ERP/CRM app used by ~500 employees daily, ensuring reliable performance for high-volume enterprise operations across multiple departments",
-        "Led complete UI/UX redesign in collaboration with design teams, modernizing legacy XML layouts into a polished, scalable interface",
-        "Implemented critical features including real-time maps & geolocation, Firebase push notifications, in-app chat with media messaging, barcode scanning, and Kanban-style workflow UIs",
-        "Applied Clean Architecture (MVP) with Kotlin, Coroutines, RxJava, Retrofit, and Dagger—ensuring scalable, maintainable code that stood up to enterprise demands",
-        "Acted as sole Android developer for over a year, later leading hiring and onboarding of new Android developer, showcasing leadership and mentorship skills",
-        "Optimized performance and reduced APK size through ProGuard and dependency management, migrating Gradle from 4.2 → 8.2",
-        "Known for thorough edge-case testing before QA handoff, minimizing production bugs and maintaining high-quality standards",
-        "Demonstrated end-to-end ownership of Android development lifecycle",
-        "Delivered scalable, user-centric solutions in a fast-paced enterprise environment.",
-        "Mentored and supported other developers, showcasing leadership and communication skills"
-      ],
+    "Took full ownership of Flex ERP/CRM app used by ~500 employees daily, ensuring reliable performance and stability",
+    "Led complete UI/UX redesign with design teams, modernizing legacy XML layouts into a scalable, modern interface",
+    "Implemented key enterprise features: real-time maps & geolocation, Firebase push notifications, in-app chat with media messaging, barcode scanning, and Kanban-style workflow UIs",
+    "Applied Clean Architecture (MVP) using Kotlin, Coroutines, RxJava, Retrofit, and Dagger for maintainable, scalable code",
+    "Acted as sole Android developer for over a year, later leading hiring and onboarding of new Android developer",
+    "Optimized performance and reduced APK size via ProGuard, dependency cleanup, and Gradle migration (4.2 → 8.2)",
+    "Conducted thorough edge-case testing prior to QA handoff, minimizing production bugs",
+    "Managed end-to-end Android development lifecycle from planning to deployment",
+    "Collaborated with cross-functional teams to deliver user-centric enterprise solutions",
+    "Mentored and supported other developers, demonstrating leadership and communication skills"
+  ],
+keyAchievements: [
+    "Modernized and relaunched a mission-critical legacy ERP/CRM Android application used by 500+ employees daily, significantly improving usability and scalability",
+    "Reduced app crash rate by 85% through architecture refactoring, defensive coding, and comprehensive testing—resulting in vastly improved stability",
+    "Boosted overall app performance by 40% by optimizing network calls, database operations, and UI rendering",
+    "Delivered 15+ major features and dozens of enhancements on time and within scope, directly supporting business growth and operational efficiency",
+    "Migrated the entire project from Gradle 4.2 to 8.2, unlocking modern tooling, build speed improvements, and future maintainability",
+    "Reduced APK size and build time through ProGuard configuration and dependency optimization, improving installation speed for users in the field",
+    "Successfully transitioned from sole Android developer to team lead—hiring, mentoring, and onboarding new Android talent to scale the team",
+    "Introduced and enforced clean architecture best practices (MVP, modularization), resulting in a more maintainable and testable codebase",
+    "Improved development and release process with edge-case testing protocols, minimizing post-release bugs and reducing QA cycles",
+    "Elevated user satisfaction through a complete UI/UX redesign, transforming a legacy interface into a modern, intuitive experience"
+  ],
       detailedDescription: "At Novaday Co., I served as the primary Android developer for a mission-critical enterprise application that supports the daily operations of 500+ employees. This role required deep technical expertise, strong leadership skills, and the ability to work independently while collaborating effectively with cross-functional teams.",
-      keyAchievements: [
-        "Led complete modernization of legacy Android application",
-        "Reduced app crashes by 85% through comprehensive testing and optimization",
-        "Successfully mentored and onboarded new Android developer",
-        "Delivered 15+ major features on time and within budget",
-        "Improved app performance by 40% through code optimization"
-      ],
       technologies: ["Kotlin", "MVP Architecture", "RxJava", "Retrofit", "Dagger", "Firebase", "Google Maps", "Room Database", "Gradle"],
       companyPhotos: [
-        "/images/recommendations/milad-khosravi.jpg",
-        "/images/novaday/team-1.jpg",
-        "/images/novaday/office-2.jpg",
-        "/images/novaday/team-2.jpg"
+        "/images/flex/1.jpg",
+        "/images/flex/2.jpg",
+        "/images/flex/5.jpg",
+        "/images/flex/4.jpg"
       ],
       companyDescription: "Novaday Co. is a leading technology company specializing in enterprise solutions and business process automation. The company serves clients across various industries, providing innovative software solutions that streamline operations and improve efficiency.",
       teamSize: "15+ developers",
