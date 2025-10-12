@@ -1,0 +1,330 @@
+---
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { siteConfig } from "../../config";
+import "../../styles/global.css";
+
+export async function getStaticPaths() {
+  return siteConfig.experience.map((exp) => ({
+    params: { slug: exp.slug },
+    props: { experience: exp },
+  }));
+}
+
+const { experience } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={`${experience.title} at ${experience.company} - ${experience.detailedDescription}`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{experience.title} at {experience.company} - {siteConfig.name}</title>
+  </head>
+  <body>
+    <Header />
+    
+    <main class="min-h-screen bg-white">
+      <!-- Hero Section -->
+      <section class="p-8 sm:p-12 md:p-16 lg:p-24 pt-16 sm:pt-20">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div class="lg:col-span-5 min-w-0">
+              <div class="flex items-center gap-3 mb-4">
+                <a 
+                  href="/" 
+                  class="text-gray-500 hover:text-gray-700 transition-colors duration-200"
+                  onclick="saveScrollPositionAndNavigate()"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </a>
+                <span class="text-sm text-gray-500">Back to Portfolio</span>
+              </div>
+              
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-7xl font-bold text-gray-900 mb-2 leading-tight">
+                {experience.title}
+              </h1>
+              
+              <h2 
+                class="text-xl sm:text-2xl lg:text-3xl font-semibold mb-4 break-words leading-tight"
+                style={`color: ${siteConfig.accentColor}`}
+              >
+                {experience.company}
+              </h2>
+              
+              <div class="flex items-center gap-4 mb-6 flex-wrap">
+                <span class="text-lg text-gray-600">{experience.dateRange}</span>
+                <span class="text-sm text-gray-500">•</span>
+                <span class="text-sm text-gray-500 break-words">{experience.location}</span>
+              </div>
+              
+              <div
+                class="w-[75px] h-[5px] rounded-full mb-8"
+                style={`background-color: ${siteConfig.accentColor}`}
+              />
+              
+              <p class="text-lg text-gray-600 leading-relaxed mb-8 break-words">
+                {experience.detailedDescription}
+              </p>
+              
+              <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                  <svg class="w-5 h-5 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span class="text-sm text-gray-600">Team Size: {experience.teamSize}</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <svg class="w-5 h-5 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                  <span class="text-sm text-gray-600 break-words">Industry: {experience.industry}</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="lg:col-span-7 min-w-0">
+              <!-- Company Photos Gallery -->
+              <div class="mb-12">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Company Environment</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {experience.companyPhotos.map((photo, index) => (
+                    <div class="group relative overflow-hidden rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-300 cursor-pointer gallery-item" data-index={index}>
+                      <img 
+                        src={photo} 
+                        alt={`${experience.company} photo ${index + 1}`}
+                        class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="eager"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Company Description -->
+      <section class="p-8 sm:p-12 md:p-16 lg:p-24 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8">About {experience.company}</h2>
+          <p class="text-lg text-gray-600 leading-relaxed max-w-4xl">
+            {experience.companyDescription}
+          </p>
+        </div>
+      </section>
+      
+      <!-- Key Achievements -->
+      <section class="p-8 sm:p-12 md:p-16 lg:p-24">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8">Key Achievements</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {experience.keyAchievements.map((achievement, index) => (
+              <div class="flex items-start gap-4 p-6 bg-white rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+                <div 
+                  class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
+                  style={`background-color: ${siteConfig.accentColor}`}
+                >
+                  {index + 1}
+                </div>
+                <span class="text-gray-700">{achievement}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      <!-- Responsibilities -->
+      <section class="p-8 sm:p-12 md:p-16 lg:p-24 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8">Key Responsibilities</h2>
+          <div class="space-y-4">
+            {experience.bullets.map((bullet) => (
+              <div class="flex items-start gap-3 p-4 bg-white rounded-lg border border-gray-200">
+                <div 
+                  class="w-2 h-2 rounded-full mt-2 flex-shrink-0"
+                  style={`background-color: ${siteConfig.accentColor}`}
+                />
+                <span class="text-gray-700">{bullet}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      <!-- Technologies Used -->
+      <section class="p-8 sm:p-12 md:p-16 lg:p-24">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8">Technologies & Tools</h2>
+          <div class="flex flex-wrap gap-3">
+            {experience.technologies.map((tech) => (
+              <span class="px-4 py-2 bg-gray-900 text-white rounded-lg text-sm font-medium">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+    
+    <Footer />
+    
+    <!-- Full Screen Gallery Modal -->
+    <div id="galleryModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center">
+      <div class="relative w-full h-full flex items-center justify-center p-4">
+        <!-- Close Button -->
+        <button 
+          id="closeGallery" 
+          class="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors duration-200 z-10"
+        >
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        
+        <!-- Previous Button -->
+        <button 
+          id="prevImage" 
+          class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors duration-200 z-10"
+        >
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        
+        <!-- Next Button -->
+        <button 
+          id="nextImage" 
+          class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors duration-200 z-10"
+        >
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+        
+        <!-- Image Container -->
+        <div class="max-w-[90vw] max-h-[90vh] flex items-center justify-center">
+          <img 
+            id="galleryImage" 
+            src="" 
+            alt="" 
+            class="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+          />
+        </div>
+        
+        <!-- Image Counter -->
+        <div id="imageCounter" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm">
+          <span id="currentIndex">1</span> / <span id="totalImages">{experience.companyPhotos.length}</span>
+        </div>
+      </div>
+    </div>
+    
+    <script define:vars={{ galleryImages: experience.companyPhotos, companyName: experience.company }}>
+      // Gallery functionality
+      let currentImageIndex = 0;
+      
+      function openGallery(index) {
+        currentImageIndex = index;
+        const modal = document.getElementById('galleryModal');
+        const image = document.getElementById('galleryImage');
+        const currentIndexSpan = document.getElementById('currentIndex');
+        
+        image.src = galleryImages[currentImageIndex];
+        image.alt = `${companyName} photo ${currentImageIndex + 1}`;
+        currentIndexSpan.textContent = currentImageIndex + 1;
+        
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+      
+      function closeGallery() {
+        const modal = document.getElementById('galleryModal');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+      
+      function showNextImage() {
+        currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+        updateGalleryImage();
+      }
+      
+      function showPrevImage() {
+        currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+        updateGalleryImage();
+      }
+      
+      function updateGalleryImage() {
+        const image = document.getElementById('galleryImage');
+        const currentIndexSpan = document.getElementById('currentIndex');
+        
+        image.src = galleryImages[currentImageIndex];
+        image.alt = `${companyName} photo ${currentImageIndex + 1}`;
+        currentIndexSpan.textContent = currentImageIndex + 1;
+      }
+      
+      // Event listeners
+      document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('galleryModal');
+        const closeBtn = document.getElementById('closeGallery');
+        const prevBtn = document.getElementById('prevImage');
+        const nextBtn = document.getElementById('nextImage');
+        
+        // Add click listeners to gallery items
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach(item => {
+          item.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            openGallery(index);
+          });
+        });
+        
+        closeBtn.addEventListener('click', closeGallery);
+        prevBtn.addEventListener('click', showPrevImage);
+        nextBtn.addEventListener('click', showNextImage);
+        
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            closeGallery();
+          }
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+          if (!modal.classList.contains('hidden')) {
+            if (e.key === 'Escape') {
+              closeGallery();
+            } else if (e.key === 'ArrowLeft') {
+              showPrevImage();
+            } else if (e.key === 'ArrowRight') {
+              showNextImage();
+            }
+          }
+        });
+      });
+      
+      // Save scroll position when navigating back to portfolio
+      function saveScrollPositionAndNavigate() {
+        // Get the current scroll position from sessionStorage (saved when navigating to this page)
+        const savedPosition = sessionStorage.getItem('scrollPosition');
+        if (savedPosition) {
+          // Keep the saved position for when we return
+          sessionStorage.setItem('scrollPosition', savedPosition);
+        }
+        // Navigate to home page
+        window.location.href = '/';
+      }
+    </script>
+  </body>
+</html>

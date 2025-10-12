@@ -4,6 +4,10 @@ import { siteConfig } from "../config";
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+const hasRecommendations = siteConfig.recommendations && siteConfig.recommendations.length > 0;
+
+// Check if we're on a detail page (not the main page)
+const isDetailPage = typeof window !== 'undefined' && !window.location.pathname.endsWith('/');
 ---
 
 <header
@@ -14,7 +18,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     <ul class="flex items-center gap-8 justify-center">
       <li>
         <a
-          href="#about"
+          href="/#about"
           class="text-gray-700 hover:text-black transition-colors font-medium"
         >
           About
@@ -24,7 +28,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
         hasProjects && (
           <li>
             <a
-              href="#projects"
+              href="/#projects"
               class="text-gray-700 hover:text-black transition-colors font-medium"
             >
               Projects
@@ -36,7 +40,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
         hasExperience && (
           <li>
             <a
-              href="#experience"
+              href="/#experience"
               class="text-gray-700 hover:text-black transition-colors font-medium"
             >
               Experience
@@ -48,10 +52,22 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
         hasEducation && (
           <li>
             <a
-              href="#education"
+              href="/#education"
               class="text-gray-700 hover:text-black transition-colors font-medium"
             >
               Education
+            </a>
+          </li>
+        )
+      }
+      {
+        hasRecommendations && (
+          <li>
+            <a
+              href="/#recommendations"
+              class="text-gray-700 hover:text-black transition-colors font-medium"
+            >
+              Recommendations
             </a>
           </li>
         )
@@ -61,6 +77,78 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 </header>
 
 <script>
+  // Scroll state preservation
+  let scrollPosition = 0;
+  
+  // Save scroll position when navigating away
+  function saveScrollPosition() {
+    scrollPosition = window.scrollY;
+    sessionStorage.setItem('scrollPosition', scrollPosition.toString());
+  }
+  
+  // Restore scroll position when returning to main page
+  function restoreScrollPosition() {
+    const savedPosition = sessionStorage.getItem('scrollPosition');
+    if (savedPosition) {
+      const position = parseInt(savedPosition);
+      if (position > 0) {
+        // Use instant scrolling to prevent visual jumps
+        window.scrollTo(0, position);
+        sessionStorage.removeItem('scrollPosition');
+      }
+    }
+  }
+  
+  // Handle navigation clicks
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href^="/#"]');
+    if (link) {
+      saveScrollPosition();
+    }
+    
+    // Handle clicks on project/experience links
+    const projectLink = e.target.closest('a[href^="/projects/"]');
+    const experienceLink = e.target.closest('a[href^="/experience/"]');
+    if (projectLink || experienceLink) {
+      saveScrollPosition();
+    }
+  });
+  
+  // Restore scroll position immediately to prevent flicker
+  function restoreScrollImmediately() {
+    if (window.location.pathname === '/') {
+      const savedPosition = sessionStorage.getItem('scrollPosition');
+      if (savedPosition) {
+        const position = parseInt(savedPosition);
+        if (position > 0) {
+          // Restore scroll position immediately
+          window.scrollTo(0, position);
+          sessionStorage.removeItem('scrollPosition');
+          return true; // Indicate restoration happened
+        }
+      }
+    }
+    return false;
+  }
+  
+  // Run immediately when script loads
+  const wasRestored = restoreScrollImmediately();
+  
+  // Additional restoration on DOM ready for extra safety (only if not already restored)
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.location.pathname === '/' && !wasRestored) {
+      restoreScrollPosition();
+    }
+  });
+  
+  // Handle back button
+  window.addEventListener('popstate', () => {
+    if (window.location.pathname === '/') {
+      restoreScrollPosition();
+    }
+  });
+  
+  // Header scroll effect
   window.addEventListener("scroll", () => {
     const header = document.getElementById("header");
     if (window.scrollY > 100) {
@@ -73,6 +161,21 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
 <style>
   html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Prevent flash of unstyled content during scroll restoration */
+  body {
+    transition: none !important;
+  }
+  
+  /* Ensure smooth scrolling for programmatic scrolls */
+  html {
+    scroll-behavior: auto;
+  }
+  
+  /* Smooth scrolling only for user interactions */
+  html:not(.no-smooth-scroll) {
     scroll-behavior: smooth;
   }
 </style>
