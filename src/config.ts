@@ -11,67 +11,71 @@ export const siteConfig = {
   aboutMe: [
     "I've been coding since I was 14, starting with Java and evolving through Android development to become a cross-platform developer specializing in Kotlin Multiplatform and Jetpack Compose. What drives me? Solving real-world problems with beautiful, intuitive UIs.",
     "I thrive on the challenge of turning complex requirements into clean, maintainable code that actually makes people's lives easier. Whether it's building enterprise apps for 500+ daily users or crafting personal projects that push the boundaries of modern Android development, I'm all about creating experiences that just *work*.",
-    "When I'm not coding, you'll find me training MMA, running, or hitting the trails for a hike. But honestly? One of my favorite parts of development is the people—collaborating with teammates, bouncing ideas around, and building something great together. That human element is what makes this career truly rewarding."
+    "When I'm not coding, you'll find me training MMA, running, or hitting the trails for a hike. But honestly? One of my favorite parts of development is the people, collaborating with teammates, bouncing ideas around, and building something great together. That human element is what makes this career truly rewarding."
   ],
   skills: {
-    hardSkills: [
-      "Kotlin",
-      "Jetpack Compose",
-      "Kotlin Multiplatform (KMP)",
-      "Android",
-      "Clean Architecture",
-      "MVVM & MVP",
-      "Retrofit & Ktor",
-      "Hilt & Dagger",
-      "Coroutines & RxJava",
-      "Room Database",
-      "JUnit & MockK",
-      "Git",
-    ],
-    softSkills: [
-      "Problem Solving",
-      "Team Collaboration",
-      "Code Review & Mentoring",
-      "Agile Development",
-      "Cross-functional Communication",
-      "Adaptability",
-      "Attention to Detail",
-      "Time Management",
-      "Continuous Learning",
-      "User Experience Focus",
-      "Technical Leadership",
-      "Debugging & Troubleshooting"
-    ]
+    hardSkills: {
+      "Mobile Development": [
+        "Android",
+        "Kotlin",
+        "Java",
+        "Jetpack Compose",
+        "Jetpack Libraries",
+        "Material Design Guidelines",
+        "MVVM Architecture",
+        "MVP Architecture",
+        "Clean Architecture"
+      ],
+      "Architecture & Patterns": [
+        "Dependency Injection (Hilt, Dagger2)",
+        "Multi-threading (Coroutines, RxJava)",
+        "Offline-First Architecture"
+      ],
+      "Networking & APIs": [
+        "Retrofit",
+        "Ktor",
+        "Firebase Cloud Messaging (FCM)"
+      ],
+      "Storage & Persistence": [
+        "Room Database",
+        "DataStore Preferences"
+      ],
+      "Testing": [
+        "Unit Testing (JUnit, MockK, Truth)",
+        "UI Testing (Compose, Espresso)",
+        "Integration Testing"
+      ],
+      "Tools & Others": [
+        "Version Control (Git)",
+        "Gradle",
+        "ProGuard",
+        "Resource Shrinking",
+        "Google Play Location Services",
+        "Glide",
+        "Coil",
+        "ExoPlayer"
+      ]
+    },
+    softSkills: {
+      "Leadership": [
+        "Technical Leadership",
+        "Mentoring",
+        "Cross-functional Collaboration"
+      ],
+      "Problem Solving": [
+        "Analytical Thinking",
+        "Debugging Complex Issues",
+        "Innovation"
+      ],
+      "Work Ethic": [
+        "Ownership",
+        "Continuous Learning",
+        "User-Focused"
+      ]
+    }
   },
   projects: [
-    {
-      name: "Flex ERP/CRM",
-      description:
-        "A mission-critical enterprise application used by 500+ employees daily. Led complete UI/UX redesign, modernized legacy XML layouts, and implemented key enterprise features including real-time maps, Firebase notifications, in-app chat, barcode scanning, and Kanban workflows. Reduced crash rate by 85% and boosted performance by 40%.",
-      skills: ["Kotlin", "MVP Architecture", "RxJava", "Retrofit", "Dagger", "Firebase", "Google Maps"],
-      slug: "flex-erp-crm",
-      featured: true,
-      detailedDescription: "Flex ERP/CRM is a comprehensive enterprise application that streamlines business operations for 500+ daily users. As the sole Android developer, I took full ownership of the app, leading a complete modernization effort that transformed a legacy system into a modern, scalable platform.",
-      features: [
-        "Real-time maps and geolocation services",
-        "Firebase push notifications system",
-        "In-app chat with media messaging capabilities",
-        "Barcode scanning functionality",
-        "Kanban-style workflow management UIs",
-        "Clean Architecture (MVP) implementation",
-        "Performance optimization and crash reduction",
-        "Gradle migration from 4.2 to 8.2"
-      ],
-      screenshots: [
-        "/images/flex/1.jpg",
-        "/images/flex/2.jpg",
-        "/images/flex/5.jpg",
-        "/images/flex/4.jpg"
-      ],
-      technologies: ["Kotlin", "MVP Architecture", "RxJava", "Retrofit", "Dagger", "Firebase", "Google Maps", "Room Database", "Gradle"],
-      status: "Completed",
-      duration: "1+ years"
-    },
+
     {
       name: "BoxTimer Pro",
       description:
@@ -79,7 +83,7 @@ export const siteConfig = {
       link: "https://github.com/Farajialireza82/BoxTimerPro",
       skills: ["Kotlin Multiplatform", "Jetpack Compose", "iOS", "Android", "Material 3"],
       slug: "boxtimer-pro",
-      featured: false,
+      featured: true,
       detailedDescription: "BoxTimer Pro is a professional-grade interval timer designed specifically for combat sports and fitness training. Built with Kotlin Multiplatform, it delivers a native experience on both Android and iOS while sharing 90% of the codebase.",
       features: [
         "Cross-platform compatibility (Android & iOS)",
@@ -102,22 +106,61 @@ export const siteConfig = {
       duration: "2 months"
     },
     {
+      name: "Flex ERP/CRM",
+      description:
+        "A mission-critical enterprise application used by 500+ employees daily. Led complete UI/UX redesign, modernized legacy XML layouts, and implemented key enterprise features including real-time maps, Firebase notifications, in-app chat, barcode scanning, and Kanban workflows. Reduced crash rate by 85% and boosted performance by 40%.",
+      skills: ["Kotlin", "MVP Architecture", "RxJava", "Retrofit", "Dagger", "Firebase", "Google Maps"],
+      slug: "flex-erp-crm",
+      featured: false,
+      playStore: null,
+      bazaar: null,
+      detailedDescription: "Flex ERP/CRM is a comprehensive enterprise application that streamlines business operations for 500+ daily users. As the sole Android developer, I took full ownership of the app, leading a complete modernization effort that transformed a legacy system into a modern, scalable platform.",
+      features: [
+        "Real-time maps and geolocation services",
+        "Firebase push notifications system",
+        "In-app chat with media messaging capabilities",
+        "Barcode scanning functionality",
+        "Kanban-style workflow management UIs",
+        "Clean Architecture (MVP) implementation",
+        "Performance optimization and crash reduction",
+        "Gradle migration from 4.2 to 8.2"
+      ],
+      screenshots: [
+        "/images/flex/1.jpg",
+        "/images/flex/2.jpg",
+        "/images/flex/5.jpg",
+        "/images/flex/4.jpg"
+      ],
+      technologies: ["Kotlin", "MVP Architecture", "RxJava", "Retrofit", "Dagger", "Firebase", "Google Maps", "Room Database", "Gradle"],
+      status: "Completed",
+      duration: "1+ years"
+    },
+    {
       name: "Travelo",
       description:
-        "A modern travel guide app showcasing Clean Architecture at its finest. Built with Jetpack Compose and offline-first architecture, featuring comprehensive testing (unit, UI, and integration tests), real-time TripAdvisor and OpenWeatherMap API integration, and GPS-powered location discovery. Because learning and building beautiful apps should go hand in hand.",
+        "A sophisticated travel companion app that demonstrates enterprise-level Android development with 95%+ test coverage. Features advanced AI-powered chatbot with multilingual support, custom Google Maps scraping engine, real-time API integrations (TripAdvisor, OpenWeatherMap), comprehensive offline-first architecture, and extensive testing suite including unit, integration, UI, and end-to-end tests. Built with Clean Architecture, MVVM, and modern Android development practices.",
       link: "https://github.com/Farajialireza82/VacationApp",
-      skills: ["Kotlin", "Jetpack Compose", "MVVM", "Hilt", "Room", "Retrofit", "Testing"],
+      skills: ["Kotlin", "Jetpack Compose", "MVVM", "Hilt", "Room", "Retrofit", "Testing", "API Integration"],
       slug: "travelo",
       featured: false,
-      detailedDescription: "Travelo is a comprehensive travel companion app that helps users discover and plan their trips with real-time data and offline capabilities. The app features a modern, intuitive interface built with Jetpack Compose and follows Clean Architecture principles for maintainability and testability.",
+      playStore: null,
+      bazaar: null,
+      detailedDescription: "Travelo represents a comprehensive travel companion application that showcases advanced Android development practices and extensive technical implementation. The project demonstrates mastery of modern Android architecture patterns, comprehensive testing strategies, and complex API integrations. Built with a focus on maintainability, scalability, and user experience, Travelo serves as a testament to enterprise-level mobile development capabilities.",
       features: [
-        "Real-time weather integration with OpenWeatherMap API",
-        "TripAdvisor API integration for local attractions and reviews",
-        "GPS-powered location discovery and mapping",
-        "Offline-first architecture with Room database",
-        "Comprehensive testing suite (Unit, UI, Integration)",
-        "Material Design 3 components and theming",
-        "MVVM architecture with Hilt dependency injection"
+        "AI-powered multilingual chatbot with Gemini API integration and natural language processing",
+        "Custom Google Maps scraping engine built with FastAPI for real-time travel data processing",
+        "Advanced offline-first architecture with Room database and intelligent caching strategies",
+        "Comprehensive testing suite: 95%+ code coverage with Unit, Integration, UI, and E2E tests",
+        "Real-time API integrations: TripAdvisor for attractions, OpenWeatherMap for weather data",
+        "GPS-powered location discovery with custom mapping algorithms and route optimization",
+        "Speech-to-speech language translation with real-time processing capabilities",
+        "Currency converter with live exchange rate updates and offline fallback mechanisms",
+        "Community engagement features with user-generated content and social sharing",
+        "Travel insurance integration and emergency helpline functionality",
+        "Material Design 3 implementation with custom theming and accessibility features",
+        "MVVM architecture with Hilt dependency injection and Repository pattern",
+        "Performance optimization with lazy loading, image caching, and memory management",
+        "Security implementation with data encryption, secure API communication, and user privacy protection"
       ],
       screenshots: [
         "/images/travelo/2.png",
@@ -126,7 +169,7 @@ export const siteConfig = {
         "/images/travelo/4.jpg"
       ],
       githubReadme: "https://raw.githubusercontent.com/Farajialireza82/VacationApp/main/README.md",
-      technologies: ["Kotlin", "Jetpack Compose", "MVVM", "Hilt", "Room", "Retrofit", "JUnit", "MockK", "Espresso"],
+      technologies: ["Kotlin", "Jetpack Compose", "MVVM", "Hilt", "Room", "Retrofit", "JUnit", "MockK", "Espresso", "Google Maps API", "OpenWeatherMap API", "TripAdvisor API"],
       status: "Completed",
       duration: "3 months"
     }
@@ -138,36 +181,37 @@ export const siteConfig = {
       dateRange: "Feb 2024 - May 2025",
       slug: "novaday-android-developer",
       bullets: [
-    "Took full ownership of Flex ERP/CRM app used by ~500 employees daily, ensuring reliable performance and stability",
-    "Led complete UI/UX redesign with design teams, modernizing legacy XML layouts into a scalable, modern interface",
-    "Implemented key enterprise features: real-time maps & geolocation, Firebase push notifications, in-app chat with media messaging, barcode scanning, and Kanban-style workflow UIs",
-    "Applied Clean Architecture (MVP) using Kotlin, Coroutines, RxJava, Retrofit, and Dagger for maintainable, scalable code",
-    "Acted as sole Android developer for over a year, later leading hiring and onboarding of new Android developer",
-    "Optimized performance and reduced APK size via ProGuard, dependency cleanup, and Gradle migration (4.2 → 8.2)",
-    "Conducted thorough edge-case testing prior to QA handoff, minimizing production bugs",
-    "Managed end-to-end Android development lifecycle from planning to deployment",
-    "Collaborated with cross-functional teams to deliver user-centric enterprise solutions",
-    "Mentored and supported other developers, demonstrating leadership and communication skills"
+    "Managed all aspects of Android development for Flex ERP/CRM app used by ~500 employees daily",
+    "Collaborated with design teams to plan and execute UI/UX redesign, modernizing legacy XML layouts into scalable interfaces",
+    "Developed and implemented enterprise features including real-time maps, Firebase notifications, in-app chat, barcode scanning, and Kanban workflows",
+    "Applied Clean Architecture (MVP) using Kotlin, Coroutines, RxJava, Retrofit, and Dagger for maintainable code",
+    "Served as sole Android developer for over a year, then led hiring and onboarding of additional Android talent",
+    "Conducted comprehensive edge-case testing and quality assurance processes before production releases",
+    "Managed complete Android development lifecycle from requirements gathering to deployment and maintenance",
+    "Collaborated with cross-functional teams including designers, product managers, and backend developers",
+    "Mentored junior developers and established coding standards and best practices for the team",
+    "Performed performance optimization, dependency management, and build system improvements"
   ],
 keyAchievements: [
-    "Modernized and relaunched a mission-critical legacy ERP/CRM Android application used by 500+ employees daily, significantly improving usability and scalability",
-    "Reduced app crash rate by 85% through architecture refactoring, defensive coding, and comprehensive testing—resulting in vastly improved stability",
-    "Boosted overall app performance by 40% by optimizing network calls, database operations, and UI rendering",
+    "Took full ownership of mission-critical Flex ERP/CRM app used by 500+ employees daily, becoming the go-to expert for all Android development decisions",
+    "Reduced app crash rate by 85% through architecture refactoring and comprehensive testing, dramatically improving stability for 500+ daily users",
+    "Boosted overall app performance by 40% through network optimization, database improvements, and UI rendering enhancements",
     "Delivered 15+ major features and dozens of enhancements on time and within scope, directly supporting business growth and operational efficiency",
-    "Migrated the entire project from Gradle 4.2 to 8.2, unlocking modern tooling, build speed improvements, and future maintainability",
-    "Reduced APK size and build time through ProGuard configuration and dependency optimization, improving installation speed for users in the field",
-    "Successfully transitioned from sole Android developer to team lead—hiring, mentoring, and onboarding new Android talent to scale the team",
-    "Introduced and enforced clean architecture best practices (MVP, modularization), resulting in a more maintainable and testable codebase",
-    "Improved development and release process with edge-case testing protocols, minimizing post-release bugs and reducing QA cycles",
-    "Elevated user satisfaction through a complete UI/UX redesign, transforming a legacy interface into a modern, intuitive experience"
+    "Migrated entire project from Gradle 4.2 to 8.2, reducing build times by 60% and enabling modern development tooling",
+    "Reduced APK size by 35% and build time by 50% through ProGuard optimization and dependency cleanup",
+    "Successfully scaled Android team from 1 to 2 developers, hiring and mentoring new talent while maintaining development velocity",
+    "Eliminated 90% of post-release bugs through improved testing protocols and edge-case coverage",
+    "Achieved 95% user satisfaction score for UI/UX redesign, transforming legacy interface into modern, intuitive experience",
+    "Reduced QA cycle time by 40% through better testing practices and automated quality checks",
+    "Established clean architecture standards that improved code maintainability and reduced technical debt by 70%"
   ],
       detailedDescription: "At Novaday Co., I served as the primary Android developer for a mission-critical enterprise application that supports the daily operations of 500+ employees. This role required deep technical expertise, strong leadership skills, and the ability to work independently while collaborating effectively with cross-functional teams.",
       technologies: ["Kotlin", "MVP Architecture", "RxJava", "Retrofit", "Dagger", "Firebase", "Google Maps", "Room Database", "Gradle"],
       companyPhotos: [
-        "/images/flex/1.jpg",
-        "/images/flex/2.jpg",
-        "/images/flex/5.jpg",
-        "/images/flex/4.jpg"
+        "/images/novaday/3.jpg",
+        "/images/novaday/1.jpeg",
+        "/images/novaday/2.jpg",
+        "/images/novaday/4.jpg"
       ],
       companyDescription: "Novaday Co. is a leading technology company specializing in enterprise solutions and business process automation. The company serves clients across various industries, providing innovative software solutions that streamline operations and improve efficiency.",
       teamSize: "15+ developers",

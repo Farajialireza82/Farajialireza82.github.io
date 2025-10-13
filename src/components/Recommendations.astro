@@ -24,12 +24,12 @@ const hasRecommendations = siteConfig.recommendations && siteConfig.recommendati
 
           {/* Horizontal scrolling recommendations */}
           <div class="relative group">
+            {/* Fade gradients - positioned outside scrolling container */}
+            <div class="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-gray-50 to-transparent z-30 pointer-events-none"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-gray-50 to-transparent z-30 pointer-events-none"></div>
+            
             {/* Horizontal scrolling container */}
-            <div class="overflow-x-auto overflow-y-hidden relative scrollbar-hide">
-              {/* Left fade gradient */}
-              <div class="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
-              {/* Right fade gradient */}
-              <div class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
+            <div class="overflow-x-auto overflow-y-hidden relative scrollbar-hide" id="recommendations-container">
               <div class="flex space-x-4 sm:space-x-6 animate-scroll pb-4 group-hover:pause-animation" id="recommendations-scroll">
                 {/* Duplicate recommendations for seamless loop */}
                 {[...siteConfig.recommendations, ...siteConfig.recommendations, ...siteConfig.recommendations].map((rec, index) => (
@@ -130,5 +130,77 @@ const hasRecommendations = siteConfig.recommendations && siteConfig.recommendati
     </section>
   )
 }
+
+<script>
+  // Infinite scroll for recommendations
+  function setupInfiniteScroll() {
+    const container = document.getElementById('recommendations-container');
+    const scrollElement = document.getElementById('recommendations-scroll');
+    
+    if (!container || !scrollElement) return;
+    
+    const recommendations = document.querySelectorAll('#recommendations-scroll > div');
+    const totalItems = recommendations.length;
+    const itemsPerSet = totalItems / 3; // We have 3 sets of recommendations
+    
+    let isScrolling = false;
+    let scrollTimeout;
+    
+    // Function to reset scroll position seamlessly
+    function resetScrollPosition() {
+      if (isScrolling) return;
+      
+      const scrollLeft = container.scrollLeft;
+      const itemWidth = recommendations[0].offsetWidth + 24; // width + gap
+      const setWidth = itemWidth * itemsPerSet;
+      
+      // If we're in the second set (middle), reset to first set
+      if (scrollLeft >= setWidth && scrollLeft < setWidth * 2) {
+        container.scrollLeft = scrollLeft - setWidth;
+      }
+      // If we're in the third set (end), reset to first set
+      else if (scrollLeft >= setWidth * 2) {
+        container.scrollLeft = scrollLeft - (setWidth * 2);
+      }
+    }
+    
+    // Handle scroll events
+    container.addEventListener('scroll', () => {
+      isScrolling = true;
+      clearTimeout(scrollTimeout);
+      
+      // Reset scroll position after a short delay
+      scrollTimeout = setTimeout(() => {
+        resetScrollPosition();
+        isScrolling = false;
+      }, 150);
+    });
+    
+    // Handle wheel events for smooth infinite scrolling
+    container.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      
+      const delta = e.deltaX || e.deltaY;
+      const currentScroll = container.scrollLeft;
+      const itemWidth = recommendations[0].offsetWidth + 24;
+      const setWidth = itemWidth * itemsPerSet;
+      
+      // Calculate new scroll position
+      let newScroll = currentScroll + delta;
+      
+      // Handle infinite loop
+      if (newScroll < 0) {
+        newScroll = setWidth * 2 + newScroll; // Go to end of second set
+      } else if (newScroll >= setWidth * 2) {
+        newScroll = newScroll - (setWidth * 2); // Go to beginning
+      }
+      
+      container.scrollLeft = newScroll;
+    }, { passive: false });
+  }
+  
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', setupInfiniteScroll);
+</script>
 
 

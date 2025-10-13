@@ -28,31 +28,51 @@ import { siteConfig } from "../config";
         </div>
 
         <div class="pt-4 space-y-8">
-          <!-- Soft Skills Section -->
+          <!-- Hard Skills Section -->
           <div>
-            <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-4">Soft Skills</h3>
-            <div class="flex flex-wrap gap-3">
-              {
-                siteConfig.skills.softSkills.map((skill) => (
-                  <span class="px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-100 text-gray-800 rounded-full text-sm sm:text-base md:text-lg font-medium hover:bg-gray-200 transition-colors duration-200">
-                    {skill}
-                  </span>
-                ))
-              }
+            <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-6">Technical Skills</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {Object.entries(siteConfig.skills.hardSkills).map(([category, skills], index) => (
+                <div class="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-sm transition-all duration-300">
+                  <div class="flex items-center gap-2 mb-4">
+                    <div class="w-2 h-2 rounded-full bg-gray-400"></div>
+                    <h4 class="text-lg font-medium text-gray-800">
+                      {category}
+                    </h4>
+                  </div>
+                  <div class="flex flex-wrap gap-2">
+                    {skills.map((skill) => (
+                      <span class="px-3 py-1.5 bg-white text-gray-700 rounded-full text-sm font-medium border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all duration-200">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
-          <!-- Hard Skills Section -->
+          <!-- Soft Skills Section -->
           <div>
-            <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-4">Technical Skills</h3>
-            <div class="flex flex-wrap gap-3">
-              {
-                siteConfig.skills.hardSkills.map((skill) => (
-                  <span class="px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-100 text-gray-800 rounded-full text-sm sm:text-base md:text-lg font-medium hover:bg-gray-200 transition-colors duration-200">
-                    {skill}
-                  </span>
-                ))
-              }
+            <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-6">Soft Skills</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {Object.entries(siteConfig.skills.softSkills).map(([category, skills], index) => (
+                <div class="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-sm transition-all duration-300">
+                  <div class="flex items-center gap-2 mb-4">
+                    <div class="w-2 h-2 rounded-full bg-gray-400"></div>
+                    <h4 class="text-lg font-medium text-gray-800">
+                      {category}
+                    </h4>
+                  </div>
+                  <div class="flex flex-wrap gap-2">
+                    {skills.map((skill) => (
+                      <span class="px-3 py-1.5 bg-white text-gray-700 rounded-full text-sm font-medium border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all duration-200">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
