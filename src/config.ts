@@ -84,6 +84,7 @@ export const siteConfig = {
       skills: ["Kotlin Multiplatform", "Jetpack Compose", "iOS", "Android", "Material 3"],
       slug: "boxtimer-pro",
       featured: true,
+      bazaar: "https://cafebazaar.ir/app/com.cromulent.box_timer",
       detailedDescription: "BoxTimer Pro is a professional-grade interval timer designed specifically for combat sports and fitness training. Built with Kotlin Multiplatform, it delivers a native experience on both Android and iOS while sharing 90% of the codebase.",
       features: [
         "Cross-platform compatibility (Android & iOS)",
