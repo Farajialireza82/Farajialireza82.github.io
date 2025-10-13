@@ -5,12 +5,26 @@ body {
 }
 
 .line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  word-wrap: break-word !important;
+  max-height: calc(1.5em * 3) !important; /* Ensure max height for 3 lines */
+  line-height: 1.5 !important;
+}
+
+/* Alternative class name to avoid Tailwind conflicts */
+.text-ellipsis-3-lines {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  word-wrap: break-word !important;
+  max-height: calc(1.5em * 3) !important;
+  line-height: 1.5 !important;
 }
 
 .line-clamp-4 {
