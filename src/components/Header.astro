@@ -25,18 +25,6 @@ const isDetailPage = typeof window !== 'undefined' && !window.location.pathname.
         </a>
       </li>
       {
-        hasProjects && (
-          <li>
-            <a
-              href="/#projects"
-              class="text-gray-700 hover:text-black transition-colors font-medium"
-            >
-              Projects
-            </a>
-          </li>
-        )
-      }
-      {
         hasExperience && (
           <li>
             <a
@@ -44,6 +32,18 @@ const isDetailPage = typeof window !== 'undefined' && !window.location.pathname.
               class="text-gray-700 hover:text-black transition-colors font-medium"
             >
               Experience
+            </a>
+          </li>
+        )
+      }
+      {
+        hasProjects && (
+          <li>
+            <a
+              href="/#projects"
+              class="text-gray-700 hover:text-black transition-colors font-medium"
+            >
+              Showcase
             </a>
           </li>
         )

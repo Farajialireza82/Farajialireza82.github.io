@@ -8,23 +8,70 @@ export const siteConfig = {
     linkedin: "https://www.linkedin.com/in/alireza-faraji-69946669/",
     github: "https://github.com/Farajialireza82",
   },
-  aboutMe:
-    "I've been coding since I was 14, starting with Java and evolving through Android development to become a cross-platform developer specializing in Kotlin Multiplatform and Jetpack Compose. What drives me? Solving real-world problems with beautiful, intuitive UIs. I thrive on the challenge of turning complex requirements into clean, maintainable code that actually makes people's lives easier. Whether it's building enterprise apps for 500+ daily users or crafting personal projects that push the boundaries of modern Android development, I'm all about creating experiences that just *work*. When I'm not coding, you'll find me training MMA, running, or hitting the trails for a hike. But honestly? One of my favorite parts of development is the people—collaborating with teammates, bouncing ideas around, and building something great together. That human element is what makes this career truly rewarding.",
-  skills: [
-    "Kotlin",
-    "Jetpack Compose",
-    "Kotlin Multiplatform (KMP)",
-    "Android",
-    "Clean Architecture",
-    "MVVM & MVP",
-    "Retrofit & Ktor",
-    "Hilt & Dagger",
-    "Coroutines & RxJava",
-    "Room Database",
-    "JUnit & MockK",
-    "Git",
+  aboutMe: [
+    "I've been coding since I was 14, starting with Java and evolving through Android development to become a cross-platform developer specializing in Kotlin Multiplatform and Jetpack Compose. What drives me? Solving real-world problems with beautiful, intuitive UIs.",
+    "I thrive on the challenge of turning complex requirements into clean, maintainable code that actually makes people's lives easier. Whether it's building enterprise apps for 500+ daily users or crafting personal projects that push the boundaries of modern Android development, I'm all about creating experiences that just *work*.",
+    "When I'm not coding, you'll find me training MMA, running, or hitting the trails for a hike. But honestly? One of my favorite parts of development is the people—collaborating with teammates, bouncing ideas around, and building something great together. That human element is what makes this career truly rewarding."
   ],
+  skills: {
+    hardSkills: [
+      "Kotlin",
+      "Jetpack Compose",
+      "Kotlin Multiplatform (KMP)",
+      "Android",
+      "Clean Architecture",
+      "MVVM & MVP",
+      "Retrofit & Ktor",
+      "Hilt & Dagger",
+      "Coroutines & RxJava",
+      "Room Database",
+      "JUnit & MockK",
+      "Git",
+    ],
+    softSkills: [
+      "Problem Solving",
+      "Team Collaboration",
+      "Code Review & Mentoring",
+      "Agile Development",
+      "Cross-functional Communication",
+      "Adaptability",
+      "Attention to Detail",
+      "Time Management",
+      "Continuous Learning",
+      "User Experience Focus",
+      "Technical Leadership",
+      "Debugging & Troubleshooting"
+    ]
+  },
   projects: [
+    {
+      name: "Flex ERP/CRM",
+      description:
+        "A mission-critical enterprise application used by 500+ employees daily. Led complete UI/UX redesign, modernized legacy XML layouts, and implemented key enterprise features including real-time maps, Firebase notifications, in-app chat, barcode scanning, and Kanban workflows. Reduced crash rate by 85% and boosted performance by 40%.",
+      skills: ["Kotlin", "MVP Architecture", "RxJava", "Retrofit", "Dagger", "Firebase", "Google Maps"],
+      slug: "flex-erp-crm",
+      featured: true,
+      detailedDescription: "Flex ERP/CRM is a comprehensive enterprise application that streamlines business operations for 500+ daily users. As the sole Android developer, I took full ownership of the app, leading a complete modernization effort that transformed a legacy system into a modern, scalable platform.",
+      features: [
+        "Real-time maps and geolocation services",
+        "Firebase push notifications system",
+        "In-app chat with media messaging capabilities",
+        "Barcode scanning functionality",
+        "Kanban-style workflow management UIs",
+        "Clean Architecture (MVP) implementation",
+        "Performance optimization and crash reduction",
+        "Gradle migration from 4.2 to 8.2"
+      ],
+      screenshots: [
+        "/images/flex/1.jpg",
+        "/images/flex/2.jpg",
+        "/images/flex/5.jpg",
+        "/images/flex/4.jpg"
+      ],
+      technologies: ["Kotlin", "MVP Architecture", "RxJava", "Retrofit", "Dagger", "Firebase", "Google Maps", "Room Database", "Gradle"],
+      status: "Completed",
+      duration: "1+ years"
+    },
     {
       name: "BoxTimer Pro",
       description:
@@ -32,6 +79,7 @@ export const siteConfig = {
       link: "https://github.com/Farajialireza82/BoxTimerPro",
       skills: ["Kotlin Multiplatform", "Jetpack Compose", "iOS", "Android", "Material 3"],
       slug: "boxtimer-pro",
+      featured: false,
       detailedDescription: "BoxTimer Pro is a professional-grade interval timer designed specifically for combat sports and fitness training. Built with Kotlin Multiplatform, it delivers a native experience on both Android and iOS while sharing 90% of the codebase.",
       features: [
         "Cross-platform compatibility (Android & iOS)",
@@ -43,9 +91,9 @@ export const siteConfig = {
         "Background timer functionality"
       ],
       screenshots: [
+        "/images/boxtimer/3.png",
         "/images/boxtimer/1.png",
         "/images/boxtimer/2.png",
-        "/images/boxtimer/3.png",
         "/images/boxtimer/4.jpg"
       ],
       githubReadme: "https://raw.githubusercontent.com/Farajialireza82/BoxTimerPro/main/README.md",
@@ -60,6 +108,7 @@ export const siteConfig = {
       link: "https://github.com/Farajialireza82/VacationApp",
       skills: ["Kotlin", "Jetpack Compose", "MVVM", "Hilt", "Room", "Retrofit", "Testing"],
       slug: "travelo",
+      featured: false,
       detailedDescription: "Travelo is a comprehensive travel companion app that helps users discover and plan their trips with real-time data and offline capabilities. The app features a modern, intuitive interface built with Jetpack Compose and follows Clean Architecture principles for maintainability and testability.",
       features: [
         "Real-time weather integration with OpenWeatherMap API",
@@ -71,8 +120,8 @@ export const siteConfig = {
         "MVVM architecture with Hilt dependency injection"
       ],
       screenshots: [
-        "/images/travelo/1.png",
         "/images/travelo/2.png",
+        "/images/travelo/1.png",
         "/images/travelo/3.png",
         "/images/travelo/4.jpg"
       ],
@@ -141,6 +190,16 @@ keyAchievements: [
   recommendations: [
     {
       id: "rec-1",
+      name: "Sudabeh Zolfikhoram",
+      title: "Product designer",
+      company: "Novaday Co.",
+      avatar: "/images/recommendations/sudabeh-zolfikhoram.jpg",
+      text: "I had the pleasure of working with Alireza at Novaday, and I can confidently say he’s one of the most dedicated Android developers I’ve collaborated with. His technical expertise, attention to detail, and strong sense of responsibility consistently led to high-quality results.\nBeyond his technical skills, Alireza stands out for his teamwork and proactive attitude. He’s always eager to learn, share knowledge, and push projects toward their best possible outcome. Any team would be lucky to have him. Beyond his technical skills, Alireza stands out for his teamwork and proactive attitude. He’s always eager to learn, share knowledge, and push projects toward their best possible outcome. Any team would be lucky to have him.",
+      date: "October 2025",
+      connection: "Former Colleague"
+    },
+    {
+      id: "rec-2",
       name: "Milad Khosravi",
       title: "Senior Backend Developer",
       company: "Novaday Co.",
@@ -150,7 +209,7 @@ keyAchievements: [
       connection: "Former Colleague"
     },
     {
-      id: "rec-2", 
+      id: "rec-3", 
       name: "Arman Mohammadi",
       title: "Product Manager",
       company: "Novaday Co.",
