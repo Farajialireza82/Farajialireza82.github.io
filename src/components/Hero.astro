@@ -42,80 +42,70 @@ import { siteConfig } from "../config";
           fill={siteConfig.accentColor}
           font-family="monospace"
           font-size="24"
-          transform="rotate(-15)">&lt;/&gt;</text
-        >
+          transform="rotate(-15)">&lt;/&gt;</text>
         <text
           x="150"
           y="100"
           fill={siteConfig.accentColor}
           font-family="monospace"
           font-size="20"
-          transform="rotate(10)">{}</text
-        >
+          transform="rotate(10)">{}</text>
         <text
           x="250"
           y="80"
           fill={siteConfig.accentColor}
           font-family="monospace"
           font-size="18"
-          transform="rotate(-5)">=&gt;</text
-        >
+          transform="rotate(-5)">=&gt;</text>
         <text
           x="100"
           y="200"
           fill={siteConfig.accentColor}
           font-family="monospace"
           font-size="22"
-          transform="rotate(15)">[]</text
-        >
+          transform="rotate(15)">[]</text>
         <text
           x="300"
           y="180"
           fill={siteConfig.accentColor}
           font-family="monospace"
           font-size="20"
-          transform="rotate(-10)">&lt;&gt;</text
-        >
+          transform="rotate(-10)">&lt;&gt;</text>
         <text
           x="200"
           y="250"
           fill={siteConfig.accentColor}
           font-family="monospace"
           font-size="24"
-          transform="rotate(5)">()</text
-        >
+          transform="rotate(5)">()</text>
         <text
           x="50"
           y="320"
           fill={siteConfig.accentColor}
           font-family="monospace"
           font-size="18"
-          transform="rotate(-8)">::</text
-        >
+          transform="rotate(-8)">::</text>
         <text
           x="350"
           y="300"
           fill={siteConfig.accentColor}
           font-family="monospace"
           font-size="22"
-          transform="rotate(12)">==</text
-        >
+          transform="rotate(12)">==</text>
         <text
           x="150"
           y="350"
           fill={siteConfig.accentColor}
           font-family="monospace"
           font-size="20"
-          transform="rotate(-15)">++</text
-        >
+          transform="rotate(-15)">++</text>
         <text
           x="250"
           y="370"
           fill={siteConfig.accentColor}
           font-family="monospace"
           font-size="24"
-          transform="rotate(8)">;</text
-        >
+          transform="rotate(8)">;</text>
       </pattern>
     </defs>
     <rect
@@ -155,19 +145,22 @@ import { siteConfig } from "../config";
         <!-- Text Section -->
         <div class="flex-1 order-2 lg:order-2 text-center lg:text-left">
           <h2
-            class="text-pretty text-xl sm:text-2xl md:text-5xl font-bold tracking-tight text-gray-700 animate-fade-in"
+            class="text-pretty text-xl sm:text-2xl font-medium tracking-wide text-gray-600 animate-slide-in-up"
           >
             Hello! 👋
           </h2>
           <h1
-            class="mt-6 sm:mt-8 md:mt-10 text-pretty text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight text-gray-800 animate-fade-in animation-delay-200"
+            class="mt-4 sm:mt-6 md:mt-8 text-pretty text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 animate-fade-in-scale animation-delay-200"
           >
-            I'm <span style={{ color: siteConfig.accentColor }}
-              >{siteConfig.name}</span
+            I'm <span 
+              class="bg-gradient-to-r from-[var(--accent-color)] to-[var(--accent-color)]/80 bg-clip-text text-transparent"
+              style={{ color: siteConfig.accentColor }}
             >
+              {siteConfig.name}
+            </span>
           </h1>
           <p
-            class="mt-4 sm:mt-6 md:mt-8 text-pretty text-base sm:text-lg md:text-xl/8 font-medium text-gray-600 animate-fade-in animation-delay-400"
+            class="mt-4 sm:mt-6 md:mt-8 text-pretty text-lg sm:text-xl md:text-2xl font-semibold text-gray-700 animate-slide-in-up animation-delay-400"
           >
             {siteConfig.title}
           </p>
@@ -297,6 +290,13 @@ import { siteConfig } from "../config";
       )
     }
   </div>
+  
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <div class="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+      <div class="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse"></div>
+    </div>
+  </div>
 </div>
 
 <style>
@@ -334,5 +334,38 @@ import { siteConfig } from "../config";
 
   .animation-delay-1000 {
     animation-delay: 1s;
+  }
+
+  /* Typography enhancement animations */
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-slide-in-up {
+    animation: slideInUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in-scale {
+    animation: fadeInScale 0.6s ease-out forwards;
+    opacity: 0;
   }
 </style>

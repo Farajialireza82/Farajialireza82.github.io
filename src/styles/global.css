@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 body {
-  font-family: 'Montana', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .line-clamp-3 {
