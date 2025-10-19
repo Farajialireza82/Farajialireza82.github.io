@@ -7,7 +7,9 @@ export default defineConfig({
   site: 'https://farajialireza82.github.io',
   base: '/',
   build: {
-    assets: 'assets'
+    assets: 'assets',
+    // Optimize build output
+    inlineStylesheets: 'auto',
   },
   image: {
     // Enable image optimization
@@ -24,17 +26,27 @@ export default defineConfig({
     build: {
       // Optimize build output
       cssCodeSplit: true,
+      minify: 'terser',
       rollupOptions: {
         output: {
           manualChunks: {
-            'gallery': ['./src/utils/imageUtils.ts']
+            'vendor': ['astro']
           }
         }
       }
+    },
+    // Optimize dependencies
+    optimizeDeps: {
+      include: ['astro']
     }
   },
   // Enable compression
   compressHTML: true,
   // Optimize for static generation
   output: 'static',
+  // Performance optimizations
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'viewport'
+  }
 });
