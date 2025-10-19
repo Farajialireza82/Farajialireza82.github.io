@@ -101,16 +101,10 @@ export const siteConfig = {
         "Background timer functionality"
       ],
       screenshots: [
-        "/images/boxtimer/3.png",
-        "/images/boxtimer/1.png",
-        "/images/boxtimer/2.png",
+        "/images/boxtimer/3.jpg",
+        "/images/boxtimer/1.jpg",
+        "/images/boxtimer/2.jpg",
         "/images/boxtimer/4.jpg"
-      ],
-      thumbnails: [
-        "/images/boxtimer/thumbnails/3.png",
-        "/images/boxtimer/thumbnails/1.png",
-        "/images/boxtimer/thumbnails/2.png",
-        "/images/boxtimer/thumbnails/4.jpg"
       ],
       githubReadme: "https://raw.githubusercontent.com/Farajialireza82/BoxTimerPro/main/README.md",
       technologies: ["Kotlin Multiplatform", "Jetpack Compose", "SwiftUI", "SQLite", "Ktor"],
@@ -142,12 +136,6 @@ export const siteConfig = {
         "/images/flex/2.jpg",
         "/images/flex/5.jpg",
         "/images/flex/4.jpg"
-      ],
-      thumbnails: [
-        "/images/flex/thumbnails/1.jpg",
-        "/images/flex/thumbnails/2.jpg",
-        "/images/flex/thumbnails/5.jpg",
-        "/images/flex/thumbnails/4.jpg"
       ],
       technologies: ["Kotlin", "MVP Architecture", "RxJava", "Retrofit", "Dagger", "Firebase", "Google Maps", "Room Database", "Gradle"],
       status: "Completed",
@@ -181,16 +169,10 @@ export const siteConfig = {
         "Security implementation with data encryption, secure API communication, and user privacy protection"
       ],
       screenshots: [
-        "/images/travelo/2.png",
-        "/images/travelo/1.png",
-        "/images/travelo/3.png",
+        "/images/travelo/2.jpg",
+        "/images/travelo/1.jpg",
+        "/images/travelo/3.jpg",
         "/images/travelo/4.jpg"
-      ],
-      thumbnails: [
-        "/images/travelo/thumbnails/2.png",
-        "/images/travelo/thumbnails/1.png",
-        "/images/travelo/thumbnails/3.png",
-        "/images/travelo/thumbnails/4.jpg"
       ],
       githubReadme: "https://raw.githubusercontent.com/Farajialireza82/VacationApp/main/README.md",
       technologies: ["Kotlin", "Jetpack Compose", "MVVM", "Hilt", "Room", "Retrofit", "JUnit", "MockK", "Espresso", "Google Maps API", "OpenWeatherMap API", "TripAdvisor API"],
@@ -237,12 +219,6 @@ keyAchievements: [
         "/images/novaday/2.jpg",
         "/images/novaday/4.jpg"
       ],
-      companyPhotoThumbnails: [
-        "/images/novaday/thumbnails/3.jpg",
-        "/images/novaday/thumbnails/1.jpeg",
-        "/images/novaday/thumbnails/2.jpg",
-        "/images/novaday/thumbnails/4.jpg"
-      ],
       companyDescription: "Novaday Co. is a technology company specializing in innovative business solutions and enterprise software. The company develops modular ERP systems, smart office solutions, and employee recognition platforms. Novaday operates NovaCollege, a training and internship program that provides real product experience to emerging talent. The company focuses on empowering businesses through technology solutions including Flex ERP, Relay room booking systems, and Kudos employee recognition platforms.",
       teamSize: "15+ developers",
       industry: "Enterprise Software",
@@ -268,7 +244,6 @@ keyAchievements: [
       title: "Product designer",
       company: "Novaday Co.",
       avatar: "/images/recommendations/sudabeh-zolfikhoram.jpg",
-      avatarThumbnail: "/images/recommendations/thumbnails/sudabeh-zolfikhoram.jpg",
       text: "I had the pleasure of working with Alireza at Novaday, and I can confidently say he’s one of the most dedicated Android developers I’ve collaborated with. His technical expertise, attention to detail, and strong sense of responsibility consistently led to high-quality results.\nBeyond his technical skills, Alireza stands out for his teamwork and proactive attitude. He’s always eager to learn, share knowledge, and push projects toward their best possible outcome. Any team would be lucky to have him. Beyond his technical skills, Alireza stands out for his teamwork and proactive attitude. He’s always eager to learn, share knowledge, and push projects toward their best possible outcome. Any team would be lucky to have him.",
       date: "October 2025",
       connection: "Former Colleague"
@@ -279,7 +254,6 @@ keyAchievements: [
       title: "Senior Backend Developer",
       company: "Novaday Co.",
       avatar: "/images/recommendations/milad-khosravi.jpg",
-      avatarThumbnail: "/images/recommendations/thumbnails/milad-khosravi.jpg",
       text: "I had the pleasure of working with Alireza on several Android projects, and I can confidently say he is an exceptional Kotlin developer. His deep understanding of Android architecture, Jetpack components, and modern development practices makes him a standout engineer.",
       date: "February 2025",
       connection: "Former Colleague"
@@ -290,7 +264,6 @@ keyAchievements: [
       title: "Product Manager",
       company: "Novaday Co.",
       avatar: "/images/recommendations/arman-mohammadi.jpeg",
-      avatarThumbnail: "/images/recommendations/thumbnails/arman-mohammadi.jpeg",
       text: "I had the pleasure of working with Alireza, an incredibly dedicated Android developer, who consistently delivered high-quality implementations of new product features. During our time together, he successfully redeveloped an ERP application (Flex), bringing substantial improvements to its user interface, user experience, infrastructure, and architecture. Alireza is focused, patient, hardworking, and kind, making collaboration with him truly enjoyable. He’s always eager to learn and grow within his field. I highly recommend him.",
       date: "November 2024",
       connection: "Former Colleague"

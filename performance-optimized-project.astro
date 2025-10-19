@@ -1,0 +1,318 @@
+---
+import Header from "../src/components/Header.astro";
+import Footer from "../src/components/Footer.astro";
+import { siteConfig } from "../src/config";
+import { extractDominantColor } from "../src/utils/imageUtils";
+import "../src/styles/global.css";
+
+export async function getStaticPaths() {
+  return siteConfig.projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={project.detailedDescription} />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Optimized font loading -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    
+    <title>{project.name} - {siteConfig.name}</title>
+    
+    <!-- Preload critical images -->
+    {project.thumbnails?.slice(0, 2).map(thumb => (
+      <link rel="preload" as="image" href={thumb} />
+    ))}
+  </head>
+  <body>
+    <Header />
+    
+    <main class="min-h-screen bg-white">
+      <!-- Hero Section -->
+      <section class="p-8 sm:p-12 md:p-16 lg:p-24 pt-16 sm:pt-20">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+            <div class="lg:col-span-4">
+              <div class="flex items-center gap-3 mb-4">
+                <a 
+                  href="/" 
+                  class="text-gray-500 hover:text-gray-700 transition-colors duration-200"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </a>
+                <span class="text-sm text-gray-500">Back to Portfolio</span>
+              </div>
+              
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-7xl font-bold text-gray-900 mb-2 leading-tight">
+                {project.name}
+              </h1>
+              
+              <div class="flex items-center gap-4 mb-6">
+                <span 
+                  class={`px-3 py-1 rounded-full text-sm font-medium ${
+                    project.status === 'Completed' 
+                      ? 'bg-green-100 text-green-800' 
+                      : project.status === 'In Development'
+                      ? 'bg-yellow-100 text-yellow-800'
+                      : 'bg-blue-100 text-blue-800'
+                  }`}
+                >
+                  {project.status}
+                </span>
+                <span class="text-sm text-gray-500">{project.duration}</span>
+              </div>
+              
+              <div
+                class="w-[75px] h-[5px] rounded-full mb-8"
+                style={`background-color: ${siteConfig.accentColor}`}
+              />
+              
+              <p class="text-lg text-gray-600 leading-relaxed mb-8">
+                {project.detailedDescription}
+              </p>
+              
+              <div class="flex flex-col gap-3">
+                {project.playStore && (
+                  <a
+                    href={project.playStore}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-block"
+                  >
+                    <img 
+                      src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
+                      alt="Get it on Google Play"
+                      class="h-14 hover:opacity-80 transition-opacity duration-200"
+                      loading="lazy"
+                    />
+                  </a>
+                )}
+                
+                {project.bazaar && (
+                  <a
+                    href={project.bazaar}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-block"
+                  >
+                    <img 
+                      src="/images/bazaar-logo-white.png" 
+                      alt="Get it on Bazaar"
+                      class="h-14 hover:opacity-80 transition-opacity duration-200"
+                      loading="lazy"
+                    />
+                  </a>
+                )}
+                
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-block"
+                  >
+                    <div class="inline-flex items-center gap-3 px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200 h-14">
+                      <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                      </svg>
+                      <span class="text-lg font-medium">View on GitHub</span>
+                    </div>
+                  </a>
+                )}
+              </div>
+            </div>
+            
+            <div class="lg:col-span-8">
+              <!-- Optimized Screenshots Gallery -->
+              <div class="mb-12">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Screenshots</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {project.screenshots.map((screenshot, index) => (
+                    <div class="group relative overflow-hidden rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-300 cursor-pointer gallery-item" data-index={index}>
+                      <img 
+                        src={project.thumbnails?.[index] || screenshot}
+                        alt={`${project.name} screenshot ${index + 1}`}
+                        class="w-full h-[322px] object-cover group-hover:scale-105 transition-transform duration-300"
+                        data-full-src={screenshot}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Features Section -->
+      <section class="p-8 sm:p-12 md:p-16 lg:p-24 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8">Key Features</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {project.features.map((feature, index) => (
+              <div class="flex items-start gap-3 p-4 bg-white rounded-lg border border-gray-200">
+                <div 
+                  class="w-2 h-2 rounded-full mt-2 flex-shrink-0"
+                  style={`background-color: ${siteConfig.accentColor}`}
+                />
+                <span class="text-gray-700">{feature}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      <!-- Technologies Section -->
+      <section class="p-8 sm:p-12 md:p-16 lg:p-24">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8">Technologies Used</h2>
+          <div class="flex flex-wrap gap-3">
+            {project.technologies.map((tech) => (
+              <span class="px-4 py-2 bg-gray-900 text-white rounded-lg text-sm font-medium">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      <!-- README Section -->
+      {project.githubReadme && (
+        <section class="p-8 sm:p-12 md:p-16 lg:p-24 bg-gray-50">
+          <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">Project Documentation</h2>
+            <div class="bg-white rounded-xl border border-gray-200 p-6">
+              <div class="flex items-center gap-3 mb-4">
+                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <h3 class="text-lg font-semibold text-gray-900">README.md</h3>
+              </div>
+              <div class="prose prose-gray max-w-none">
+                <p class="text-gray-600 mb-4">
+                  This project includes comprehensive documentation. 
+                  <a 
+                    href={project.githubReadme} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="text-blue-600 hover:text-blue-800 underline"
+                  >
+                    View the full README on GitHub
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+    </main>
+    
+    <Footer />
+    
+    <!-- Simplified Gallery Modal -->
+    <div id="galleryModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center">
+      <div class="relative w-full h-full flex items-center justify-center p-4">
+        <button 
+          id="closeGallery" 
+          class="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors duration-200 z-10"
+        >
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        
+        <div class="w-[90vw] h-[90vh] flex items-center justify-center">
+          <img 
+            id="galleryImage" 
+            src="" 
+            alt="" 
+            class="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+    
+    <!-- Optimized JavaScript -->
+    <script define:vars={{ galleryImages: project.screenshots, projectName: project.name }}>
+      let currentImageIndex = 0;
+      
+      function openGallery(index) {
+        currentImageIndex = index;
+        const modal = document.getElementById('galleryModal');
+        const image = document.getElementById('galleryImage');
+        
+        image.src = galleryImages[currentImageIndex];
+        image.alt = `${projectName} screenshot ${currentImageIndex + 1}`;
+        
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+      
+      function closeGallery() {
+        const modal = document.getElementById('galleryModal');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+      
+      // Simplified color extraction (much faster)
+      function setBackgroundColor(item) {
+        const img = item.querySelector('img');
+        if (img) {
+          // Use a simple fallback color instead of complex processing
+          item.style.background = '#f3f4f6';
+        }
+      }
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('galleryModal');
+        const closeBtn = document.getElementById('closeGallery');
+        
+        // Add click listeners to gallery items
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach((item, index) => {
+          item.addEventListener('click', () => openGallery(index));
+          setBackgroundColor(item);
+        });
+        
+        closeBtn.addEventListener('click', closeGallery);
+        
+        // Close modal when clicking outside
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            closeGallery();
+          }
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+          if (!modal.classList.contains('hidden')) {
+            if (e.key === 'Escape') {
+              closeGallery();
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

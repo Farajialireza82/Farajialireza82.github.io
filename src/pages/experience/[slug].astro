@@ -102,11 +102,11 @@ const { experience } = Astro.props;
                   {experience.companyPhotos.map((photo, index) => (
                     <div class="group relative overflow-hidden rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-300 cursor-pointer gallery-item" data-index={index}>
                       <img 
-                        src={experience.companyPhotoThumbnails?.[index] || photo}
+                        src={photo}
                         alt={`${experience.company} photo ${index + 1}`}
                         class="w-full h-[322px] object-cover group-hover:scale-105 transition-transform duration-300"
-                        data-full-src={photo}
                         loading="lazy"
+                        decoding="async"
                       />
                     </div>
                   ))}
@@ -232,24 +232,7 @@ const { experience } = Astro.props;
       </div>
     </div>
     
-    <script define:vars={{ galleryImages: experience.companyPhotos, thumbnailImages: experience.companyPhotoThumbnails, companyName: experience.company }}>
-      
-      // Utility function for lazy loading
-      function loadFullImage(imgElement) {
-        const fullSrc = imgElement.dataset.fullSrc;
-        if (fullSrc && imgElement.src !== fullSrc) {
-          const img = new Image();
-          img.onload = () => {
-            imgElement.src = fullSrc;
-            imgElement.classList.add('loaded');
-          };
-          img.onerror = () => {
-            imgElement.src = fullSrc;
-            imgElement.classList.add('loaded');
-          };
-          img.src = fullSrc;
-        }
-      }
+    <script define:vars={{ galleryImages: experience.companyPhotos, companyName: experience.company }}>
       
       // Gallery functionality
       let currentImageIndex = 0;
@@ -394,24 +377,7 @@ const { experience } = Astro.props;
         }
       }
       
-      // Handle lazy loading for gallery images
-      function setupLazyLoading() {
-        const lazyImages = document.querySelectorAll('.lazy-image:not(.gallery-item img)');
-        
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const img = entry.target;
-              loadFullImage(img);
-              observer.unobserve(img);
-            }
-          });
-        });
-
-        lazyImages.forEach(img => {
-          imageObserver.observe(img);
-        });
-      }
+      // Simplified setup - no lazy loading needed since images are optimized
 
       // Save scroll position when navigating back to portfolio
       function saveScrollPositionAndNavigate() {
@@ -480,8 +446,7 @@ const { experience } = Astro.props;
           }
         });
 
-        // Initialize lazy loading
-        setupLazyLoading();
+        // Images load directly now - no setup needed
       });
     </script>
 

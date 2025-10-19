@@ -1,6 +1,5 @@
 ---
 import { siteConfig } from "../config";
-import { createLazyImage } from "../utils/imageUtils";
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 ---
 
@@ -77,13 +76,11 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
                             {project.screenshots && project.screenshots.length > 0 && (
                               <div class="hidden sm:block w-24 md:w-28 lg:w-32 flex-shrink-0">
                                 <img
-                                  {...createLazyImage(
-                                    project.screenshots[0],
-                                    project.thumbnails?.[0] || project.screenshots[0],
-                                    `${project.name} preview`,
-                                    "w-full aspect-square object-cover rounded-lg shadow-md transition-all duration-300 group-hover:shadow-lg opacity-0 transition-opacity duration-300",
-                                    "lazy"
-                                  )}
+                                  src={project.screenshots[0]}
+                                  alt={`${project.name} preview`}
+                                  class="w-full aspect-square object-cover rounded-lg shadow-md transition-all duration-300 group-hover:shadow-lg"
+                                  loading="lazy"
+                                  decoding="async"
                                 />
                               </div>
                             )}
@@ -112,31 +109,4 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
   )
 }
 
-<script>
-  import { loadFullImage } from "../utils/imageUtils";
-
-  // Handle lazy loading for project images
-  document.addEventListener('DOMContentLoaded', () => {
-    const lazyImages = document.querySelectorAll('.lazy-image');
-    
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target as HTMLImageElement;
-          loadFullImage(img);
-          observer.unobserve(img);
-        }
-      });
-    });
-
-    lazyImages.forEach(img => {
-      imageObserver.observe(img);
-    });
-  });
-</script>
-
-<style>
-  .lazy-image.loaded {
-    opacity: 1 !important;
-  }
-</style>
+<!-- No script needed - images load directly now -->
