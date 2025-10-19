@@ -23,15 +23,16 @@ export default defineConfig({
       minify: 'terser',
       rollupOptions: {
         output: {
-          manualChunks: {
-            'vendor': ['astro']
+          manualChunks: (id) => {
+            // Create vendor chunks for node_modules dependencies
+            if (id.includes('node_modules')) {
+              // Group by package name for better caching
+              const packageName = id.split('node_modules/')[1].split('/')[0];
+              return 'vendor';
+            }
           }
         }
       }
-    },
-    // Optimize dependencies
-    optimizeDeps: {
-      include: ['astro']
     }
   },
   // Enable compression
