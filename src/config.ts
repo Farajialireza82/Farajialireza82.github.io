@@ -215,7 +215,7 @@ keyAchievements: [
       technologies: ["Kotlin", "MVP Architecture", "RxJava", "Retrofit", "Dagger", "Firebase", "Google Maps", "Room Database", "Gradle"],
       companyPhotos: [
         "/images/novaday/3.jpg",
-        "/images/novaday/1.jpeg",
+        "/images/novaday/1.jpg",
         "/images/novaday/2.jpg",
         "/images/novaday/4.jpg"
       ],
