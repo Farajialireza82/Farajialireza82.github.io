@@ -14,12 +14,6 @@ export default defineConfig({
   image: {
     // Enable image optimization
     domains: ['farajialireza82.github.io'],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
   },
   vite: {
     plugins: [tailwindcss()],
