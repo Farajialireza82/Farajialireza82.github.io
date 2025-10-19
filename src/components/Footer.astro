@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from "../config";
+import CVDownloadButton from "./CVDownloadButton.astro";
 ---
 
 <footer class="relative bg-gray-50 border-t border-gray-200">
@@ -126,7 +127,10 @@ import { siteConfig } from "../config";
       </div>
 
       <div class="flex flex-col md:items-end gap-4">
-        <p class="text-sm text-gray-500">
+        <div class="flex justify-center md:justify-end">
+          <CVDownloadButton />
+        </div>
+        <p class="text-sm text-gray-500 text-center md:text-right">
           © {new Date().getFullYear()}
           {siteConfig.name}. All rights reserved.
         </p>

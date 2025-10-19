@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from "../config";
+import CVDownloadButton from "./CVDownloadButton.astro";
 ---
 
 <div
@@ -164,6 +165,11 @@ import { siteConfig } from "../config";
           >
             {siteConfig.title}
           </p>
+          
+          <!-- CV Download Button -->
+          <div class="mt-6 sm:mt-8 md:mt-10 animate-slide-in-up animation-delay-600">
+            <CVDownloadButton />
+          </div>
         </div>
       </div>
     </div>

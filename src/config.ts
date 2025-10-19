@@ -8,6 +8,10 @@ export const siteConfig = {
     linkedin: "https://www.linkedin.com/in/alireza-faraji-69946669/",
     github: "https://github.com/Farajialireza82",
   },
+  cv: {
+    downloadUrl: "/cv/Alireza_Faraji_CV.pdf",
+    fileName: "Alireza_Faraji_CV.pdf"
+  },
   aboutMe: [
     "I've been coding since I was 14, starting with Java and evolving through Android development to become a cross-platform developer specializing in Kotlin Multiplatform and Jetpack Compose. What drives me? Solving real-world problems with beautiful, intuitive UIs.",
     "I thrive on the challenge of turning complex requirements into clean, maintainable code that actually makes people's lives easier. Whether it's building enterprise apps for 500+ daily users or crafting personal projects that push the boundaries of modern Android development, I'm all about creating experiences that just *work*.",
