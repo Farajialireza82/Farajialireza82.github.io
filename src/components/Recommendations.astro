@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from "../config";
+import { createLazyImage } from "../utils/imageUtils";
 const hasRecommendations = siteConfig.recommendations && siteConfig.recommendations.length > 0;
 ---
 
@@ -39,10 +40,13 @@ const hasRecommendations = siteConfig.recommendations && siteConfig.recommendati
                       <div class="flex-shrink-0">
                         <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-200">
                           <img 
-                            src={rec.avatar} 
-                            alt={`${rec.name} - ${rec.title}`}
-                            class="w-full h-full object-cover"
-                            loading="lazy"
+                            {...createLazyImage(
+                              rec.avatar,
+                              rec.avatarThumbnail || rec.avatar,
+                              `${rec.name} - ${rec.title}`,
+                              "w-full h-full object-cover opacity-0 transition-opacity duration-300",
+                              "lazy"
+                            )}
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                           />
                           <div class="w-full h-full bg-gray-300 flex items-center justify-center text-gray-600 font-semibold text-lg" style="display: none;">
@@ -132,6 +136,27 @@ const hasRecommendations = siteConfig.recommendations && siteConfig.recommendati
 }
 
 <script>
+  import { loadFullImage } from "../utils/imageUtils";
+
+  // Handle lazy loading for recommendation images
+  function setupLazyLoading() {
+    const lazyImages = document.querySelectorAll('.lazy-image');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target as HTMLImageElement;
+          loadFullImage(img);
+          observer.unobserve(img);
+        }
+      });
+    });
+
+    lazyImages.forEach(img => {
+      imageObserver.observe(img);
+    });
+  }
+
   // Infinite scroll for recommendations
   function setupInfiniteScroll() {
     const container = document.getElementById('recommendations-container');
@@ -200,7 +225,14 @@ const hasRecommendations = siteConfig.recommendations && siteConfig.recommendati
   }
   
   // Initialize when DOM is ready
-  document.addEventListener('DOMContentLoaded', setupInfiniteScroll);
+  document.addEventListener('DOMContentLoaded', () => {
+    setupLazyLoading();
+    setupInfiniteScroll();
+  });
 </script>
 
-
+<style>
+  .lazy-image.loaded {
+    opacity: 1 !important;
+  }
+</style>

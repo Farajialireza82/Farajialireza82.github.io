@@ -21,15 +21,19 @@ export const siteConfig = {
         "Java",
         "Jetpack Compose",
         "Jetpack Libraries",
+        "Navigation Component",
         "Material Design Guidelines",
         "MVVM Architecture",
         "MVP Architecture",
-        "Clean Architecture"
+        "Clean Architecture",
+        "Legacy Android Development (Fragments, Activities, Views)",
+        "Kotlin Flow"
       ],
       "Architecture & Patterns": [
         "Dependency Injection (Hilt, Dagger2)",
         "Multi-threading (Coroutines, RxJava)",
-        "Offline-First Architecture"
+        "Offline-First Architecture",
+        "UDF (Unidirectional Data Flow)"
       ],
       "Networking & APIs": [
         "Retrofit",
@@ -53,7 +57,8 @@ export const siteConfig = {
         "Google Play Location Services",
         "Glide",
         "Coil",
-        "ExoPlayer"
+        "ExoPlayer",
+        "Custom UI Components & Animations"
       ]
     },
     softSkills: {
@@ -101,6 +106,12 @@ export const siteConfig = {
         "/images/boxtimer/2.png",
         "/images/boxtimer/4.jpg"
       ],
+      thumbnails: [
+        "/images/boxtimer/thumbnails/3.png",
+        "/images/boxtimer/thumbnails/1.png",
+        "/images/boxtimer/thumbnails/2.png",
+        "/images/boxtimer/thumbnails/4.jpg"
+      ],
       githubReadme: "https://raw.githubusercontent.com/Farajialireza82/BoxTimerPro/main/README.md",
       technologies: ["Kotlin Multiplatform", "Jetpack Compose", "SwiftUI", "SQLite", "Ktor"],
       status: "In Development",
@@ -131,6 +142,12 @@ export const siteConfig = {
         "/images/flex/2.jpg",
         "/images/flex/5.jpg",
         "/images/flex/4.jpg"
+      ],
+      thumbnails: [
+        "/images/flex/thumbnails/1.jpg",
+        "/images/flex/thumbnails/2.jpg",
+        "/images/flex/thumbnails/5.jpg",
+        "/images/flex/thumbnails/4.jpg"
       ],
       technologies: ["Kotlin", "MVP Architecture", "RxJava", "Retrofit", "Dagger", "Firebase", "Google Maps", "Room Database", "Gradle"],
       status: "Completed",
@@ -169,6 +186,12 @@ export const siteConfig = {
         "/images/travelo/3.png",
         "/images/travelo/4.jpg"
       ],
+      thumbnails: [
+        "/images/travelo/thumbnails/2.png",
+        "/images/travelo/thumbnails/1.png",
+        "/images/travelo/thumbnails/3.png",
+        "/images/travelo/thumbnails/4.jpg"
+      ],
       githubReadme: "https://raw.githubusercontent.com/Farajialireza82/VacationApp/main/README.md",
       technologies: ["Kotlin", "Jetpack Compose", "MVVM", "Hilt", "Room", "Retrofit", "JUnit", "MockK", "Espresso", "Google Maps API", "OpenWeatherMap API", "TripAdvisor API"],
       status: "Completed",
@@ -190,7 +213,7 @@ export const siteConfig = {
     "Conducted comprehensive edge-case testing and quality assurance processes before production releases",
     "Managed complete Android development lifecycle from requirements gathering to deployment and maintenance",
     "Collaborated with cross-functional teams including designers, product managers, and backend developers",
-    "Mentored junior developers and established coding standards and best practices for the team",
+    "Mentored junior developers and established coding standards while learning invaluable lessons from senior engineers—creating a culture of mutual growth and knowledge sharing",
     "Performed performance optimization, dependency management, and build system improvements"
   ],
 keyAchievements: [
@@ -206,7 +229,7 @@ keyAchievements: [
     "Reduced QA cycle time by 40% through better testing practices and automated quality checks",
     "Established clean architecture standards that improved code maintainability and reduced technical debt by 70%"
   ],
-      detailedDescription: "At Novaday Co., I served as the primary Android developer for a mission-critical enterprise application that supports the daily operations of 500+ employees. This role required deep technical expertise, strong leadership skills, and the ability to work independently while collaborating effectively with cross-functional teams.",
+      detailedDescription: "My time at Novaday Co. was truly transformative, both professionally and personally. As the primary Android developer for a mission-critical enterprise application supporting 500+ employees daily, I not only grew technically but also formed incredible friendships and learned invaluable lessons from an amazing team of developers and engineers. The collaborative spirit, mutual support, and shared passion for building great software made every challenge feel like an opportunity to grow together. Working alongside such talented people taught me that the best code isn't just about technical excellence, it's about the relationships you build and the impact you make as a team.",
       technologies: ["Kotlin", "MVP Architecture", "RxJava", "Retrofit", "Dagger", "Firebase", "Google Maps", "Room Database", "Gradle"],
       companyPhotos: [
         "/images/novaday/3.jpg",
@@ -214,7 +237,13 @@ keyAchievements: [
         "/images/novaday/2.jpg",
         "/images/novaday/4.jpg"
       ],
-      companyDescription: "Novaday Co. is a leading technology company specializing in enterprise solutions and business process automation. The company serves clients across various industries, providing innovative software solutions that streamline operations and improve efficiency.",
+      companyPhotoThumbnails: [
+        "/images/novaday/thumbnails/3.jpg",
+        "/images/novaday/thumbnails/1.jpeg",
+        "/images/novaday/thumbnails/2.jpg",
+        "/images/novaday/thumbnails/4.jpg"
+      ],
+      companyDescription: "Novaday Co. is a technology company specializing in innovative business solutions and enterprise software. The company develops modular ERP systems, smart office solutions, and employee recognition platforms. Novaday operates NovaCollege, a training and internship program that provides real product experience to emerging talent. The company focuses on empowering businesses through technology solutions including Flex ERP, Relay room booking systems, and Kudos employee recognition platforms.",
       teamSize: "15+ developers",
       industry: "Enterprise Software",
       location: "Remote/On-site"
@@ -239,6 +268,7 @@ keyAchievements: [
       title: "Product designer",
       company: "Novaday Co.",
       avatar: "/images/recommendations/sudabeh-zolfikhoram.jpg",
+      avatarThumbnail: "/images/recommendations/thumbnails/sudabeh-zolfikhoram.jpg",
       text: "I had the pleasure of working with Alireza at Novaday, and I can confidently say he’s one of the most dedicated Android developers I’ve collaborated with. His technical expertise, attention to detail, and strong sense of responsibility consistently led to high-quality results.\nBeyond his technical skills, Alireza stands out for his teamwork and proactive attitude. He’s always eager to learn, share knowledge, and push projects toward their best possible outcome. Any team would be lucky to have him. Beyond his technical skills, Alireza stands out for his teamwork and proactive attitude. He’s always eager to learn, share knowledge, and push projects toward their best possible outcome. Any team would be lucky to have him.",
       date: "October 2025",
       connection: "Former Colleague"
@@ -249,6 +279,7 @@ keyAchievements: [
       title: "Senior Backend Developer",
       company: "Novaday Co.",
       avatar: "/images/recommendations/milad-khosravi.jpg",
+      avatarThumbnail: "/images/recommendations/thumbnails/milad-khosravi.jpg",
       text: "I had the pleasure of working with Alireza on several Android projects, and I can confidently say he is an exceptional Kotlin developer. His deep understanding of Android architecture, Jetpack components, and modern development practices makes him a standout engineer.",
       date: "February 2025",
       connection: "Former Colleague"
@@ -259,6 +290,7 @@ keyAchievements: [
       title: "Product Manager",
       company: "Novaday Co.",
       avatar: "/images/recommendations/arman-mohammadi.jpeg",
+      avatarThumbnail: "/images/recommendations/thumbnails/arman-mohammadi.jpeg",
       text: "I had the pleasure of working with Alireza, an incredibly dedicated Android developer, who consistently delivered high-quality implementations of new product features. During our time together, he successfully redeveloped an ERP application (Flex), bringing substantial improvements to its user interface, user experience, infrastructure, and architecture. Alireza is focused, patient, hardworking, and kind, making collaboration with him truly enjoyable. He’s always eager to learn and grow within his field. I highly recommend him.",
       date: "November 2024",
       connection: "Former Colleague"

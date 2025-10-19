@@ -2,6 +2,7 @@
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { siteConfig } from "../../config";
+import { createLazyImage } from "../../utils/imageUtils";
 import "../../styles/global.css";
 
 export async function getStaticPaths() {
@@ -101,10 +102,11 @@ const { experience } = Astro.props;
                   {experience.companyPhotos.map((photo, index) => (
                     <div class="group relative overflow-hidden rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-300 cursor-pointer gallery-item" data-index={index}>
                       <img 
-                        src={photo} 
+                        src={experience.companyPhotoThumbnails?.[index] || photo}
                         alt={`${experience.company} photo ${index + 1}`}
                         class="w-full h-[322px] object-cover group-hover:scale-105 transition-transform duration-300"
-                        loading="eager"
+                        data-full-src={photo}
+                        loading="lazy"
                       />
                     </div>
                   ))}
@@ -181,7 +183,7 @@ const { experience } = Astro.props;
     <Footer />
     
     <!-- Full Screen Gallery Modal -->
-    <div id="galleryModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center">
+    <div id="galleryModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center" style="display: none;">
       <div class="relative w-full h-full flex items-center justify-center p-4">
         <!-- Close Button -->
         <button 
@@ -230,7 +232,25 @@ const { experience } = Astro.props;
       </div>
     </div>
     
-    <script define:vars={{ galleryImages: experience.companyPhotos, companyName: experience.company }}>
+    <script define:vars={{ galleryImages: experience.companyPhotos, thumbnailImages: experience.companyPhotoThumbnails, companyName: experience.company }}>
+      
+      // Utility function for lazy loading
+      function loadFullImage(imgElement) {
+        const fullSrc = imgElement.dataset.fullSrc;
+        if (fullSrc && imgElement.src !== fullSrc) {
+          const img = new Image();
+          img.onload = () => {
+            imgElement.src = fullSrc;
+            imgElement.classList.add('loaded');
+          };
+          img.onerror = () => {
+            imgElement.src = fullSrc;
+            imgElement.classList.add('loaded');
+          };
+          img.src = fullSrc;
+        }
+      }
+      
       // Gallery functionality
       let currentImageIndex = 0;
       
@@ -245,12 +265,14 @@ const { experience } = Astro.props;
         currentIndexSpan.textContent = currentImageIndex + 1;
         
         modal.classList.remove('hidden');
+        modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
       }
       
       function closeGallery() {
         const modal = document.getElementById('galleryModal');
         modal.classList.add('hidden');
+        modal.style.display = 'none';
         document.body.style.overflow = 'auto';
       }
       
@@ -372,6 +394,37 @@ const { experience } = Astro.props;
         }
       }
       
+      // Handle lazy loading for gallery images
+      function setupLazyLoading() {
+        const lazyImages = document.querySelectorAll('.lazy-image:not(.gallery-item img)');
+        
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              loadFullImage(img);
+              observer.unobserve(img);
+            }
+          });
+        });
+
+        lazyImages.forEach(img => {
+          imageObserver.observe(img);
+        });
+      }
+
+      // Save scroll position when navigating back to portfolio
+      function saveScrollPositionAndNavigate() {
+        // Get the current scroll position from sessionStorage (saved when navigating to this page)
+        const savedPosition = sessionStorage.getItem('scrollPosition');
+        if (savedPosition) {
+          // Keep the saved position for when we return
+          sessionStorage.setItem('scrollPosition', savedPosition);
+        }
+        // Navigate to home page
+        window.location.href = '/';
+      }
+
       // Event listeners
       document.addEventListener('DOMContentLoaded', function() {
         const modal = document.getElementById('galleryModal');
@@ -426,19 +479,16 @@ const { experience } = Astro.props;
             }
           }
         });
+
+        // Initialize lazy loading
+        setupLazyLoading();
       });
-      
-      // Save scroll position when navigating back to portfolio
-      function saveScrollPositionAndNavigate() {
-        // Get the current scroll position from sessionStorage (saved when navigating to this page)
-        const savedPosition = sessionStorage.getItem('scrollPosition');
-        if (savedPosition) {
-          // Keep the saved position for when we return
-          sessionStorage.setItem('scrollPosition', savedPosition);
-        }
-        // Navigate to home page
-        window.location.href = '/';
-      }
     </script>
+
+    <style>
+      .lazy-image.loaded {
+        opacity: 1 !important;
+      }
+    </style>
   </body>
 </html>

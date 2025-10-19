@@ -2,6 +2,7 @@
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { siteConfig } from "../../config";
+import { createLazyImage } from "../../utils/imageUtils";
 import "../../styles/global.css";
 
 export async function getStaticPaths() {
@@ -135,10 +136,11 @@ const { project } = Astro.props;
                   {project.screenshots.map((screenshot, index) => (
                     <div class="group relative overflow-hidden rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-300 cursor-pointer gallery-item" data-index={index}>
                       <img 
-                        src={screenshot} 
+                        src={project.thumbnails?.[index] || screenshot}
                         alt={`${project.name} screenshot ${index + 1}`}
                         class="w-full h-[322px] object-cover group-hover:scale-105 transition-transform duration-300"
-                        loading="eager"
+                        data-full-src={screenshot}
+                        loading="lazy"
                       />
                     </div>
                   ))}
@@ -215,7 +217,7 @@ const { project } = Astro.props;
     <Footer />
     
     <!-- Full Screen Gallery Modal -->
-    <div id="galleryModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center">
+    <div id="galleryModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center" style="display: none;">
       <div class="relative w-full h-full flex items-center justify-center p-4">
         <!-- Close Button -->
         <button 
@@ -264,7 +266,25 @@ const { project } = Astro.props;
       </div>
     </div>
     
-    <script define:vars={{ galleryImages: project.screenshots, projectName: project.name }}>
+    <script define:vars={{ galleryImages: project.screenshots, thumbnailImages: project.thumbnails, projectName: project.name }}>
+      
+      // Utility function for lazy loading
+      function loadFullImage(imgElement) {
+        const fullSrc = imgElement.dataset.fullSrc;
+        if (fullSrc && imgElement.src !== fullSrc) {
+          const img = new Image();
+          img.onload = () => {
+            imgElement.src = fullSrc;
+            imgElement.classList.add('loaded');
+          };
+          img.onerror = () => {
+            imgElement.src = fullSrc;
+            imgElement.classList.add('loaded');
+          };
+          img.src = fullSrc;
+        }
+      }
+      
       // Gallery functionality
       let currentImageIndex = 0;
       
@@ -274,17 +294,20 @@ const { project } = Astro.props;
         const image = document.getElementById('galleryImage');
         const currentIndexSpan = document.getElementById('currentIndex');
         
+        // Use full-size image for gallery modal
         image.src = galleryImages[currentImageIndex];
         image.alt = `${projectName} screenshot ${currentImageIndex + 1}`;
         currentIndexSpan.textContent = currentImageIndex + 1;
         
         modal.classList.remove('hidden');
+        modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
       }
       
       function closeGallery() {
         const modal = document.getElementById('galleryModal');
         modal.classList.add('hidden');
+        modal.style.display = 'none';
         document.body.style.overflow = 'auto';
       }
       
@@ -406,6 +429,25 @@ const { project } = Astro.props;
         }
       }
       
+      // Handle lazy loading for gallery images
+      function setupLazyLoading() {
+        const lazyImages = document.querySelectorAll('.lazy-image:not(.gallery-item img)');
+        
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              loadFullImage(img);
+              observer.unobserve(img);
+            }
+          });
+        });
+
+        lazyImages.forEach(img => {
+          imageObserver.observe(img);
+        });
+      }
+
       // Event listeners
       document.addEventListener('DOMContentLoaded', function() {
         const modal = document.getElementById('galleryModal');
@@ -460,7 +502,16 @@ const { project } = Astro.props;
             }
           }
         });
+
+        // Initialize lazy loading
+        setupLazyLoading();
       });
     </script>
+
+    <style>
+      .lazy-image.loaded {
+        opacity: 1 !important;
+      }
+    </style>
   </body>
 </html>
