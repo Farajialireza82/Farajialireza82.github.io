@@ -148,7 +148,7 @@ export const siteConfig = {
     {
       name: "Travelo",
       description:
-        "A sophisticated travel companion app that demonstrates enterprise-level Android development with 95%+ test coverage. Features advanced AI-powered chatbot with multilingual support, custom Google Maps scraping engine, real-time API integrations (TripAdvisor, OpenWeatherMap), comprehensive offline-first architecture, and extensive testing suite including unit, integration, UI, and end-to-end tests. Built with Clean Architecture, MVVM, and modern Android development practices.",
+        "A travel companion app that demonstrates enterprise-level Android development with 80%+ test coverage. Features real-time API integrations (TripAdvisor, OpenWeatherMap), comprehensive offline-first architecture, and extensive testing suite including unit, integration, UI, and end-to-end tests. Built with Clean Architecture, MVVM, and modern Android development practices.",
       link: "https://github.com/Farajialireza82/VacationApp",
       skills: ["Kotlin", "Jetpack Compose", "MVVM", "Hilt", "Room", "Retrofit", "Testing", "API Integration"],
       slug: "travelo",
@@ -157,20 +157,13 @@ export const siteConfig = {
       bazaar: null,
       detailedDescription: "Travelo represents a comprehensive travel companion application that showcases advanced Android development practices and extensive technical implementation. The project demonstrates mastery of modern Android architecture patterns, comprehensive testing strategies, and complex API integrations. Built with a focus on maintainability, scalability, and user experience, Travelo serves as a testament to enterprise-level mobile development capabilities.",
       features: [
-        "AI-powered multilingual chatbot with Gemini API integration and natural language processing",
-        "Custom Google Maps scraping engine built with FastAPI for real-time travel data processing",
         "Advanced offline-first architecture with Room database and intelligent caching strategies",
-        "Comprehensive testing suite: 95%+ code coverage with Unit, Integration, UI, and E2E tests",
+        "Comprehensive testing suite: 80%+ code coverage with Unit, Integration, UI, and E2E tests",
         "Real-time API integrations: TripAdvisor for attractions, OpenWeatherMap for weather data",
-        "GPS-powered location discovery with custom mapping algorithms and route optimization",
-        "Speech-to-speech language translation with real-time processing capabilities",
-        "Currency converter with live exchange rate updates and offline fallback mechanisms",
-        "Community engagement features with user-generated content and social sharing",
-        "Travel insurance integration and emergency helpline functionality",
-        "Material Design 3 implementation with custom theming and accessibility features",
+        "GPS-powered location discovery",
+        "Material Design 3 implementation",
         "MVVM architecture with Hilt dependency injection and Repository pattern",
         "Performance optimization with lazy loading, image caching, and memory management",
-        "Security implementation with data encryption, secure API communication, and user privacy protection"
       ],
       screenshots: [
         "/images/travelo/2.jpg",
@@ -179,7 +172,7 @@ export const siteConfig = {
         "/images/travelo/4.jpg"
       ],
       githubReadme: "https://raw.githubusercontent.com/Farajialireza82/VacationApp/main/README.md",
-      technologies: ["Kotlin", "Jetpack Compose", "MVVM", "Hilt", "Room", "Retrofit", "JUnit", "MockK", "Espresso", "Google Maps API", "OpenWeatherMap API", "TripAdvisor API"],
+      technologies: ["Kotlin", "Jetpack Compose", "MVVM", "Hilt", "Room", "Retrofit", "JUnit", "MockK", "Espresso", "OpenWeatherMap API", "TripAdvisor API"],
       status: "Completed",
       duration: "3 months"
     }
